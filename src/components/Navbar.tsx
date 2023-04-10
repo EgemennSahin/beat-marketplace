@@ -10,7 +10,7 @@ export default function Navbar() {
   );
 
   return (
-    <div className="sticky top-0 navbar justify-between py-2 px-16 bg-base-200">
+    <div className="sticky top-0 navbar justify-between py-2 px-16 bg-base-200 z-50">
       <div className="flex-1 space-x-4">
         <Link href="/" className="font-bold text-xl">
           BeatStore

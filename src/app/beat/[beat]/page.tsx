@@ -18,12 +18,12 @@ export default function Page({ params }: { params: { beat: string } }) {
   const beatData = getBeatData(beat);
 
   return (
-    <div className="flex w-fit p-12 gap-8 rounded-md bg-base-300">
+    <div className="mx-auto mt-16 flex w-fit p-12 gap-8 rounded-md bg-base-300">
       <div className="flex flex-col gap-4 items-center">
-        <img className="w-48 h-48" src="/beat.jpg" alt="Beat 1" />
+        <img className="w-48 h-48 rounded-md" src="/beat.jpg" alt="Beat 1" />
         <Link
           href="/user/id"
-          className="text-lg tracking-wider text-base-content normal-case"
+          className="flex gap-2 items-start hover:underline text-lg tracking-wider text-base-content"
         >
           {beatData.user}
         </Link>

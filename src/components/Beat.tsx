@@ -1,7 +1,8 @@
+import { BeatData } from "@/types/BeatData";
 import Image from "next/image";
 import Link from "next/link";
 
-export function Beat({ beatData }: { beatData: any }) {
+export function Beat({ beatData }: { beatData: BeatData }) {
   return (
     <div className="flex flex-col gap-1">
       <Link
