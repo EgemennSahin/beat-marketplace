@@ -30,9 +30,7 @@ export default function BeatCarousel({
   useEffect(() => {
     if (beatRef.current) {
       const width = beatRef.current.getBoundingClientRect().width;
-      // gap-8 = 32px
-      const gap = 32;
-      setBeatWidth(width + gap);
+      setBeatWidth(width + 4);
     }
   }, []);
 
@@ -64,14 +62,18 @@ export default function BeatCarousel({
       <div className="relative">
         <div className="overflow-hidden relative">
           <div
-            className="flex gap-8 transition-transform duration-1000 ease-in-out"
+            className="flex transition-transform duration-1000 ease-in-out"
             style={{
               transform: `translateX(-${carouselIndex * 5 * beatWidth}px)`,
             }}
           >
             {beats.map((beat, index) => (
-              <div key={index} ref={index === 0 ? beatRef : null}>
-                <Beat beatData={beat} />
+              <div
+                key={index}
+                ref={index === 0 ? beatRef : null}
+                className="first:pl-0 last:pr-0 p-1"
+              >
+                <Beat key={index} beatData={beat} />
               </div>
             ))}
           </div>

@@ -36,3 +36,9 @@ export function getBeatData(beatId: number) {
 export function getBeats() {
   return beats;
 }
+
+export function formatTime(time: number): string {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}

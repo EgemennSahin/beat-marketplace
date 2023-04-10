@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ViewCartButton from "./cart/ViewCartButton";
+import ViewCartButton from "../cart/ViewCartButton";
 
 export default function Navbar() {
   return (

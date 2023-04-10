@@ -1,5 +1,4 @@
 "use client";
-
 import { BeatData } from "@/types/BeatData";
 import {
   createContext,

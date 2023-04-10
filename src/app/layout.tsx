@@ -1,6 +1,8 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navigation/Navbar";
 import "./globals.css";
 import { CartProvider } from "@/contexts/CartContext";
+import { PlayerContextProvider } from "@/contexts/PlayerContext";
+import BottomPlayer from "@/components/beat/BottomPlayer";
 
 export const metadata = {
   title: "Beat Marketplace",
@@ -15,10 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative">
-        <CartProvider>
-          <Navbar />
-          {children}
-        </CartProvider>
+        <PlayerContextProvider>
+          <CartProvider>
+            <Navbar />
+            {children}
+            <BottomPlayer />
+          </CartProvider>
+        </PlayerContextProvider>
       </body>
     </html>
   );
