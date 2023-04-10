@@ -17,7 +17,7 @@ export default function BeatCarousel({
   const beatRef = useRef<HTMLDivElement>(null);
 
   const canNavigateLeft = carouselIndex > 0;
-  const canNavigateRight = carouselIndex < beats.length - 5;
+  const canNavigateRight = carouselIndex < (beats.length - 5) / 5;
 
   const navigateLeft = () => {
     if (canNavigateLeft) setCarouselIndex(carouselIndex - 1);
@@ -37,7 +37,7 @@ export default function BeatCarousel({
   }, []);
 
   return (
-    <div className="flex flex-col px-16 py-8 bg-base-300 gap-6">
+    <div className="flex flex-col px-16 py-8 gap-6">
       <div className="flex justify-between">
         <h2 className="text-2xl font-medium">{title}</h2>
         <div className="flex gap-4">
@@ -64,8 +64,10 @@ export default function BeatCarousel({
       <div className="relative">
         <div className="overflow-hidden relative">
           <div
-            className="flex gap-8 transition-transform duration-300 ease-in"
-            style={{ transform: `translateX(-${carouselIndex * beatWidth}px)` }}
+            className="flex gap-8 transition-transform duration-1000 ease-in-out"
+            style={{
+              transform: `translateX(-${carouselIndex * 5 * beatWidth}px)`,
+            }}
           >
             {beats.map((beat, index) => (
               <div key={index} ref={index === 0 ? beatRef : null}>

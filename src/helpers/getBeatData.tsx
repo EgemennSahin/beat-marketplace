@@ -3,7 +3,7 @@ import { BeatData } from "@/types/BeatData";
 // Create 10 random beats
 const beats: BeatData[] = [];
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 21; i++) {
   const beat: BeatData = {
     id: i,
 

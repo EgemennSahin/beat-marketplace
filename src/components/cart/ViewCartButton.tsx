@@ -18,6 +18,24 @@ export default function VideoCartButton() {
     }
   }, [totalItems]);
 
+  // When the user clicks anywhere outside of the dropdown, close it
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (isOpen && event.target instanceof HTMLElement) {
+        if (!event.target.closest(".dropdown")) {
+          // Blur the button so that the focus ring is removed
+          event.target.blur();
+          setIsOpen(false);
+        }
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <div className={`dropdown dropdown-end ${isOpen ? "dropdown-open" : ""}`}>
       <button
