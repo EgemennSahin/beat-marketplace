@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import BeatInCart from "./BeatInCart";
 
 export default function VideoCartButton() {
-  const { cartItems } = useCart()!;
+  const { cartItems } = useCart();
   const totalItems = cartItems.length;
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
 
@@ -37,7 +37,7 @@ export default function VideoCartButton() {
         <div className="card-body">
           <span className="font-bold text-lg">{totalItems} Beat</span>
           {cartItems.map((beatData) => (
-            <BeatInCart beatData={beatData} />
+            <BeatInCart key={beatData.id} beatData={beatData} />
           ))}
           <span className="text-info">Toplam: {totalPrice} TL</span>
           <div className="card-actions">

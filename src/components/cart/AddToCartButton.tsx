@@ -1,10 +1,11 @@
 "use client";
 
 import { useCart } from "@/contexts/CartContext";
+import { BeatData } from "@/types/BeatData";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 export default function AddToCartButton({ beatData }: { beatData: BeatData }) {
-  const { addToCart } = useCart()!;
+  const { addToCart } = useCart();
 
   return (
     <button

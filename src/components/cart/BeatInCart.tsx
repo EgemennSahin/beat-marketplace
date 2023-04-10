@@ -5,11 +5,10 @@ import { BeatData } from "@/types/BeatData";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 export default function BeatInCart({ beatData }: { beatData: BeatData }) {
-  const { removeFromCart } = useCart()!;
+  const { removeFromCart } = useCart();
 
   return (
     <div
-      key={beatData.id}
       className="relative bg-cover bg-center bg-no-repeat rounded-md mb-2 group"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${beatData.image})`,

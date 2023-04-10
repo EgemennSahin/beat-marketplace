@@ -1,5 +1,6 @@
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import { getBeatData } from "@/helpers/getBeatData";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Page({
@@ -14,7 +15,7 @@ export default function Page({
   return (
     <div className="mx-auto mt-16 flex w-fit p-12 gap-8 rounded-md bg-base-300">
       <div className="flex flex-col gap-4 items-center">
-        <img className="w-48 h-48 rounded-md" src="/beat.jpg" alt="Beat 1" />
+        <Image className="w-48 h-48 rounded-md" src="/beat.jpg" alt="Beat 1" />
         <Link
           href={`/user/${beatData.userId}`}
           className="flex gap-2 items-start hover:underline text-lg tracking-wider text-base-content"
