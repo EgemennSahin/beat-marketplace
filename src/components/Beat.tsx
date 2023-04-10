@@ -6,7 +6,7 @@ export function Beat({ beatData }: { beatData: BeatData }) {
   return (
     <div className="flex flex-col gap-1">
       <Link
-        href={`/beat/${beatData.id}`}
+        href={`/beat/${beatData.userId}/${beatData.id}`}
         className="h-64 w-64 relative rounded-md overflow-clip"
       >
         <Image src={beatData.image} alt="Beat 1" fill />

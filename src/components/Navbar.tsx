@@ -1,14 +1,8 @@
 import Image from "next/image";
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import ViewCartButton from "./cart/ViewCartButton";
 
 export default function Navbar() {
-  const s = (
-    <Link href="/upload" className="btn btn-primary normal-case">
-      Yükle
-    </Link>
-  );
-
   return (
     <div className="sticky top-0 navbar justify-between py-2 px-4 space-x-4 w-screen lg:px-16 bg-base-200 z-50">
       <div className="flex-1 space-x-4">
@@ -46,26 +40,7 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <ShoppingCartIcon className="w-8 h-8" />
-              <span className="badge badge-md indicator-item">8</span>
-            </div>
-          </label>
-          <div
-            tabIndex={0}
-            className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
-          >
-            <div className="card-body">
-              <span className="font-bold text-lg">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
-              <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ViewCartButton />
       </div>
     </div>
   );
