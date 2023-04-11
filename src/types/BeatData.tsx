@@ -1,15 +1,15 @@
 export interface BeatData {
-  id: number;
+  id: string;
   name: string;
   src: string;
   price: number;
   image: string;
-  userId: number;
+  userId: string;
   userName: string;
 }
 
 export interface UserData {
-  id: number;
+  id: string;
   username: string;
   email: string;
   avatar: string;

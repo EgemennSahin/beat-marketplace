@@ -5,13 +5,13 @@ const beats: BeatData[] = [];
 
 for (let i = 0; i < 21; i++) {
   const beat: BeatData = {
-    id: i,
+    id: Math.random().toString(36).substring(7),
 
     // Random beat name
     name: Math.random().toString(36).substring(7),
 
     // Random beat src
-    src: "https://firebasestorage.googleapis.com/v0/b/beat-marketplace.appspot.com/o/11_30_22%20130%20BPM%20Fm.mp3?alt=media&token=bc8e2ea3-df58-43c9-ac31-e2e526934881",
+    src: i % 2 == 0 ? "/beat.mp3" : "/beat2.mp3",
 
     // Random beat price
     price: Math.floor(Math.random() * 10000),
@@ -20,7 +20,7 @@ for (let i = 0; i < 21; i++) {
     image: "/beat.jpg",
 
     // Random beat userId
-    userId: Math.floor(Math.random() * 100),
+    userId: Math.random().toString(36).substring(7),
 
     // Random beat userName
     userName: Math.random().toString(36).substring(7),

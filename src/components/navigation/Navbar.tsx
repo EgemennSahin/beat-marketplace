@@ -4,9 +4,9 @@ import ViewCartButton from "../cart/ViewCartButton";
 
 export default function Navbar() {
   return (
-    <div className="sticky top-0 navbar justify-between py-2 px-4 space-x-4 w-screen lg:px-16 bg-base-300 z-50">
+    <div className="sticky top-0 navbar justify-between p-4 space-x-4 w-screen lg:px-16 bg-base-200 z-50">
       <div className="flex-1 space-x-4">
-        <Link href="/" className="font-bold text-xl">
+        <Link href="/" className="font-bold text-xl text-base-content">
           BeatStore
         </Link>
         <div className="form-control">

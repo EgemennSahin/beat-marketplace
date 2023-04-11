@@ -9,20 +9,22 @@ export default function BeatInCart({ beatData }: { beatData: BeatData }) {
 
   return (
     <div
-      className="relative bg-cover bg-center bg-no-repeat rounded-md mb-2 group"
+      className="relative bg-cover bg-center bg-no-repeat rounded-md group"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${beatData.image})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${beatData.image})`,
       }}
     >
       <div className="p-2">
-        <div className="flex justify-between items-center">
-          <span className="text-base-content">{beatData.name}</span>
-          <span className="text-base-content">{beatData.price} TL</span>
+        <div className="flex justify-between items-center gap-4">
+          <span className="text-white truncate">{beatData.name}</span>
+          <span className="text-white whitespace-nowrap">
+            {beatData.price} TL
+          </span>
         </div>
       </div>
       <button
         onClick={() => removeFromCart(beatData.id)}
-        className="z-10 absolute rounded-r-md top-0 right-0 p-2 bg-red-500 text-white opacity-0 group-hover:opacity-100 group-hover:bg-opacity-75 transition-all duration-200"
+        className="z-10 absolute rounded-r-md top-0 right-0 p-2 bg-red-500 text-white opacity-0 group-hover:opacity-100 group-hover:bg-opacity-100 transition-all duration-200"
       >
         <TrashIcon className="w-5 h-5" />
       </button>

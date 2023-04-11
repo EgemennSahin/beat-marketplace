@@ -11,7 +11,7 @@ import {
 interface CartContextType {
   cartItems: BeatData[];
   addToCart: (item: BeatData) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -44,7 +44,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCartItems([...cartItems, item]);
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 

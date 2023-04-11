@@ -22,6 +22,8 @@ export default function VideoCartButton() {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (isOpen && event.target instanceof HTMLElement) {
+        // If the user clicks on the button or outside of the dropdown, close it
+
         if (!event.target.closest(".dropdown")) {
           // Blur the button so that the focus ring is removed
           event.target.blur();
@@ -50,14 +52,16 @@ export default function VideoCartButton() {
       </button>
       <div
         tabIndex={0}
-        className="mt-3 card card-compact dropdown-content w-64 bg-base-100 shadow"
+        className="mt-4 card card-compact dropdown-content w-72 bg-base-200 shadow-2xl"
       >
-        <div className="card-body">
+        <div className="card-body gap-4">
           <span className="font-bold text-lg">{totalItems} Beat</span>
           {cartItems.map((beatData) => (
             <BeatInCart key={beatData.id} beatData={beatData} />
           ))}
-          <span className="text-info">Toplam: {totalPrice} TL</span>
+          <span className="text-info text-end mr-1.5">
+            Toplam: {totalPrice} TL
+          </span>
           <div className="card-actions">
             <button className="btn btn-primary btn-block">Devam et</button>
           </div>

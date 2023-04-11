@@ -7,6 +7,7 @@ export default function Home() {
   return (
     <main className="flex flex-col bg-base-100">
       <BeatCarousel title="Bugunun Favorileri" beats={beats} />
+      <BeatCarousel title="En Cok Satilanlar" beats={beats} />
     </main>
   );
 }
