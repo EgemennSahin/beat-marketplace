@@ -11,7 +11,7 @@ export default function BeatInCart({ beatData }: { beatData: BeatData }) {
     <div
       className="relative bg-cover bg-center bg-no-repeat rounded-md group"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${beatData.image})`,
+        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8)), url(${beatData.image})`,
       }}
     >
       <div className="p-2">

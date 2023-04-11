@@ -18,7 +18,7 @@ export function Beat({ beatData }: { beatData: BeatData }) {
           fill
           style={{ objectFit: "cover" }}
         />
-        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tl from-base-300 to-transparent to-50%"></div>
         <span className="absolute bottom-2 right-3 text-2xl text-primary-content">
           {beatData.price} TL
         </span>

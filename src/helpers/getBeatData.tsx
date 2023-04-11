@@ -5,6 +5,7 @@ const beats: BeatData[] = [];
 
 for (let i = 0; i < 21; i++) {
   const beat: BeatData = {
+    // Random beat id
     id: Math.random().toString(36).substring(7),
 
     // Random beat name
@@ -29,8 +30,8 @@ for (let i = 0; i < 21; i++) {
   beats.push(beat);
 }
 
-export function getBeatData(beatId: number) {
-  return beats[beatId];
+export function getBeatData(beatId: string) {
+  return beats.find((beat) => beat.id === beatId);
 }
 
 export function getBeats() {

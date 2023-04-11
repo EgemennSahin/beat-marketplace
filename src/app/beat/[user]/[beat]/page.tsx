@@ -6,11 +6,15 @@ import Link from "next/link";
 export default function Page({
   params,
 }: {
-  params: { user: string; beat: number };
+  params: { user: string; beat: string };
 }) {
+  // The parameters are in the url
+
   const { user, beat } = params;
 
   const beatData = getBeatData(beat);
+
+  if (!beatData) return <div>Beat not found</div>;
 
   return (
     <div className="mx-auto mt-16 flex w-fit p-12 gap-8 rounded-md bg-base-300">

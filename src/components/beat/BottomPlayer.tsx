@@ -20,7 +20,6 @@ export default function BottomPlayer() {
   useEffect(() => {
     if (!audioRef.current || !beatData) return;
 
-    audioRef.current.currentTime = 0;
     setCurrentTime(0);
     setIsPlaying(true);
   }, [beatData]);
@@ -34,7 +33,7 @@ export default function BottomPlayer() {
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, audioRef.current?.src]);
 
   // Change time
   useEffect(() => {
@@ -43,18 +42,19 @@ export default function BottomPlayer() {
     const updateTime = () => {
       setCurrentTime(audioRef.current!.currentTime);
     };
-    audioRef.current.addEventListener("timeupdate", updateTime);
-    return () => {
-      if (!audioRef.current) return;
 
-      audioRef.current.removeEventListener("timeupdate", updateTime);
+    audioRef.current.addEventListener("timeupdate", updateTime);
+
+    return () => {
+      audioRef.current!.removeEventListener("timeupdate", updateTime);
     };
-  }, []);
+  }, [audioRef.current, isPlaying]);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
 
+  // Controls to change the time of the beat
   const handleRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!audioRef.current) return;
     const newTime = parseFloat(e.target.value);
@@ -63,6 +63,7 @@ export default function BottomPlayer() {
     audioRef.current.play();
   };
 
+  // Get the duration of the beat
   const onLoadedMetadata = () => {
     if (!audioRef.current) return;
     setDuration(audioRef.current.duration);
@@ -119,7 +120,7 @@ export default function BottomPlayer() {
           <input
             type="range"
             min="0"
-            max={audioRef.current?.duration || 100}
+            max={duration || 100}
             value={currentTime}
             onChange={handleRangeChange}
             className="range range-accent"
