@@ -14,22 +14,14 @@ export default function BottomPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const { selectedBeat: beatData } = usePlayerContext();
-  const [beatURL, setBeatURL] = useState("");
-  const [userURL, setUserURL] = useState("");
 
   // Reset when selected beat changes
   useEffect(() => {
-    if (!audioRef.current) return;
-
-    if (beatData) {
-      setBeatURL(getBeatUrl(beatData));
-      setUserURL(getUserUrl(beatData.userId));
-    }
+    if (!audioRef.current || !beatData) return;
 
     audioRef.current.currentTime = 0;
     setCurrentTime(0);
     setIsPlaying(true);
-    audioRef.current.play();
   }, [beatData]);
 
   // Play/Pause
@@ -91,11 +83,14 @@ export default function BottomPlayer() {
           <div className="flex flex-col">
             <Link
               className="text-primary-content text-xl hover:underline"
-              href={beatURL}
+              href={getBeatUrl(beatData)}
             >
               {beatData.name}
             </Link>
-            <Link href={userURL} className="text-base-content hover:underline">
+            <Link
+              href={getUserUrl(beatData.userId)}
+              className="text-base-content hover:underline"
+            >
               {beatData.userName}
             </Link>
           </div>
