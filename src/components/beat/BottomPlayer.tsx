@@ -12,6 +12,7 @@ import { getBeatUrl, getUserUrl } from "@/helpers/getRoutings";
 export default function BottomPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const { selectedBeat: beatData } = usePlayerContext();
 
@@ -60,6 +61,11 @@ export default function BottomPlayer() {
     setCurrentTime(newTime);
     audioRef.current.currentTime = newTime;
     audioRef.current.play();
+  };
+
+  const onLoadedMetadata = () => {
+    if (!audioRef.current) return;
+    setDuration(audioRef.current.duration);
   };
 
   if (!beatData) return null;
@@ -121,9 +127,13 @@ export default function BottomPlayer() {
         </div>
 
         <span className="text-base-content">
-          {audioRef.current ? formatTime(audioRef.current.duration) : "0:00"}
+          {audioRef.current ? formatTime(duration) : "0:00"}
         </span>
-        <audio ref={audioRef} src={beatData.src} />
+        <audio
+          ref={audioRef}
+          src={beatData.src}
+          onLoadedMetadata={onLoadedMetadata}
+        />
         <AddToCartButton beatData={beatData} />
       </div>
     </div>
