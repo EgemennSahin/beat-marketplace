@@ -143,7 +143,7 @@ export default function BottomPlayer() {
             max={duration || 100}
             value={currentTime}
             onChange={handleRangeChange}
-            className="range range-accent range-xs"
+            className="range range-xs"
           />
           <audio
             ref={audioRef}
