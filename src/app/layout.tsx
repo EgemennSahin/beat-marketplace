@@ -1,7 +1,7 @@
 import Navbar from "@/components/navigation/Navbar";
 import "./globals.css";
 import { CartProvider } from "@/providers/CartProvider";
-import BottomPlayer from "@/components/beat/BottomPlayer";
+import BottomPlayer from "@/components/player/BottomPlayer";
 import { Karla } from "next/font/google";
 import { PlayerContextProvider } from "@/providers/BottomPlayerProvider";
 

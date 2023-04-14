@@ -18,8 +18,7 @@ export default function AddToCartButton({ beatData }: { beatData: BeatData }) {
       onClick={() => dispatch(addToCart(beatData))}
       className={`btn btn-primary btn-sm ${itemInCart ? "btn-disabled" : ""}`}
     >
-      <ShoppingCartIcon className="w-5 h-5 mr-2" />
-      {itemInCart ? "Beat Sepette" : "Satın Al"}
+      <ShoppingCartIcon className="w-6 h-6" />
     </button>
   );
 }
