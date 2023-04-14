@@ -1,14 +1,18 @@
 "use client";
 
-import { useCart } from "@/contexts/CartContext";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import BeatInCart from "./BeatInCart";
+import {
+  totalItemSelector,
+  totalPriceSelector,
+} from "@/store/features/cartSlice";
+import { useAppSelector } from "@/store/store";
 
 export default function VideoCartButton() {
-  const { cartItems } = useCart();
-  const totalItems = cartItems.length;
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const totalItems = useAppSelector(totalItemSelector);
+  const totalPrice = useAppSelector(totalPriceSelector);
 
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,4 +1,4 @@
-import { BeatData } from "@/types/BeatData";
+import { BeatData } from "@/interfaces/BeatData";
 
 export function getBeatUrl(beat: BeatData) {
   return `/beat/${beat.userId}/${beat.id}`;

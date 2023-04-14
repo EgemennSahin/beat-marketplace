@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, createContext, useContext, useState } from "react";
-import { BeatData } from "@/types/BeatData";
+import { BeatData } from "@/interfaces/BeatData";
 
 interface PlayerContextType {
   selectedBeat: BeatData | null;

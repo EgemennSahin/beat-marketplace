@@ -2,12 +2,12 @@
 
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import Image from "next/image";
-import { usePlayerContext } from "@/contexts/PlayerContext";
 import { formatTime } from "@/helpers/getBeatData";
 import { PauseCircleIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
 import AddToCartButton from "../cart/AddToCartButton";
 import Link from "next/link";
 import { getBeatUrl, getUserUrl } from "@/helpers/getRoutings";
+import { usePlayerContext } from "@/providers/BottomPlayerProvider";
 
 export default function BottomPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -60,7 +60,7 @@ export default function BottomPlayer() {
     const newTime = parseFloat(e.target.value);
     setCurrentTime(newTime);
     audioRef.current.currentTime = newTime;
-    audioRef.current.play();
+    if (!isPlaying) setIsPlaying(true);
   };
 
   // Get the duration of the beat
@@ -72,9 +72,9 @@ export default function BottomPlayer() {
   if (!beatData) return null;
 
   return (
-    <div className="sticky bottom-0 left-0 right-0 flex items-end w-screen">
-      <div className="gap-4 p-3 items-end bg-base-300 rounded-tr-md">
-        <div className="relative w-48 h-48 ">
+    <div className="sticky bottom-0 flex items-end w-screen pointer-events-none">
+      <div className="gap-4 p-3 items-end bg-base-300 rounded-tr-md pointer-events-auto">
+        <div className="relative w-48 h-48">
           <Image
             src={beatData.image}
             alt={beatData.name}
@@ -85,7 +85,7 @@ export default function BottomPlayer() {
         </div>
       </div>
 
-      <div className="flex gap-4 bg-base-300 pl-2 pr-4 py-4 items-center rounded-tr-md flex-grow">
+      <div className="flex gap-4 bg-base-300 pl-2 pr-4 py-4 items-center rounded-tr-md flex-grow z-10 pointer-events-auto">
         <div className="flex gap-4 items-end">
           <div className="flex flex-col">
             <Link
@@ -123,7 +123,7 @@ export default function BottomPlayer() {
             max={duration || 100}
             value={currentTime}
             onChange={handleRangeChange}
-            className="range range-accent"
+            className="range range-accent range-xs"
           />
         </div>
 

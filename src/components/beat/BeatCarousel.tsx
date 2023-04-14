@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Beat } from "./Beat";
-import { BeatData } from "@/types/BeatData";
+import { BeatData } from "@/interfaces/BeatData";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 export default function BeatCarousel({

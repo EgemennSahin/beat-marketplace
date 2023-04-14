@@ -1,8 +1,8 @@
 "use client";
 
-import { usePlayerContext } from "@/contexts/PlayerContext";
 // components/PlayBeatButton.tsx
-import { BeatData } from "@/types/BeatData";
+import { BeatData } from "@/interfaces/BeatData";
+import { usePlayerContext } from "@/providers/BottomPlayerProvider";
 import { PlayCircleIcon } from "@heroicons/react/24/outline";
 
 interface PlayBeatButtonProps {
