@@ -35,6 +35,23 @@ export default function BottomPlayer() {
     }
   }, [isPlaying, audioRef.current?.src]);
 
+  // Reset on end
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+
+      // TODO: Play next beat
+    };
+
+    audioRef.current.addEventListener("ended", handleEnded);
+
+    return () => {
+      audioRef.current!.removeEventListener("ended", handleEnded);
+    };
+  }, [audioRef.current]);
+
   // Change time
   useEffect(() => {
     if (!audioRef.current) return;
@@ -126,7 +143,7 @@ export default function BottomPlayer() {
             max={duration || 100}
             value={currentTime}
             onChange={handleRangeChange}
-            className="range range-accent range-xs flex w-full"
+            className="range range-accent range-xs"
           />
           <audio
             ref={audioRef}
