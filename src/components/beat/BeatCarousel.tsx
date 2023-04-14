@@ -35,12 +35,12 @@ export default function BeatCarousel({
   }, []);
 
   return (
-    <div className="flex flex-col px-16 py-8 gap-6 max-w-full">
+    <div className="flex flex-col px-4 lg:px-16 py-8 gap-6 max-w-full">
       <div className="flex justify-between">
         <h2 className="text-2xl font-medium text-base-content">{title}</h2>
         <div className="flex gap-4">
           <button
-            className={`bg-black bg-opacity-50 text-white p-3 rounded-full ${
+            className={`hidden lg:block bg-black bg-opacity-50 text-white p-3 rounded-full ${
               !canNavigateLeft && "opacity-50 cursor-not-allowed"
             }`}
             onClick={navigateLeft}
@@ -49,7 +49,7 @@ export default function BeatCarousel({
             <ChevronLeftIcon className="w-6 h-6" />
           </button>
           <button
-            className={` bg-black bg-opacity-50 text-white p-3 rounded-full ${
+            className={`hidden lg:block bg-black bg-opacity-50 text-white p-3 rounded-full ${
               !canNavigateRight && "opacity-50 cursor-not-allowed"
             }`}
             onClick={navigateRight}
@@ -59,24 +59,22 @@ export default function BeatCarousel({
           </button>
         </div>
       </div>
-      <div className="relative">
-        <div className="overflow-hidden relative">
-          <div
-            className="flex transition-transform duration-1000 ease-in-out"
-            style={{
-              transform: `translateX(-${carouselIndex * 5 * beatWidth}px)`,
-            }}
-          >
-            {beats.map((beat, index) => (
-              <div
-                key={index}
-                ref={index === 0 ? beatRef : null}
-                className="first:pl-0 last:pr-0 p-1"
-              >
-                <Beat key={index} beatData={beat} />
-              </div>
-            ))}
-          </div>
+      <div className="overflow-x-auto lg:overflow-x-hidden overflow-y-hidden whitespace-nowrap scrollbar-hide">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${carouselIndex * 5 * beatWidth}px)`,
+          }}
+        >
+          {beats.map((beat, index) => (
+            <div
+              key={index}
+              ref={index === 0 ? beatRef : null}
+              className="first:pl-0 last:pr-0 p-1"
+            >
+              <Beat key={index} beatData={beat} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
