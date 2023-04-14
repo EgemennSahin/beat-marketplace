@@ -1,7 +1,6 @@
 "use client";
 
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import { useState, useEffect } from "react";
 import BeatInCart from "./BeatInCart";
 import {
   totalItemSelector,
@@ -14,41 +13,9 @@ export default function VideoCartButton() {
   const totalItems = useAppSelector(totalItemSelector);
   const totalPrice = useAppSelector(totalPriceSelector);
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (totalItems > 0) {
-      setIsOpen(true);
-    }
-  }, [totalItems]);
-
-  // When the user clicks anywhere outside of the dropdown, close it
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (isOpen && event.target instanceof HTMLElement) {
-        // If the user clicks on the button or outside of the dropdown, close it
-
-        if (!event.target.closest(".dropdown")) {
-          // Blur the button so that the focus ring is removed
-          event.target.blur();
-          setIsOpen(false);
-        }
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
-
   return (
-    <div className={`dropdown dropdown-end ${isOpen ? "dropdown-open" : ""}`}>
-      <button
-        onClick={() => setIsOpen(false)}
-        tabIndex={0}
-        className="btn btn-ghost btn-circle"
-      >
+    <div className="dropdown dropdown-end">
+      <button tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">
           <ShoppingCartIcon className="w-8 h-8" />
           <span className="badge badge-md indicator-item">{totalItems}</span>
