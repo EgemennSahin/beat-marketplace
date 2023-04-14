@@ -90,7 +90,7 @@ export default function BottomPlayer() {
 
   return (
     <div className="sticky bottom-0 flex items-end w-screen pointer-events-none">
-      <div className="gap-4 p-3 items-end bg-base-300 rounded-tr-md pointer-events-auto">
+      <div className="gap-4 p-3 items-end bg-base-300 rounded-tr-md pointer-events-auto lg:flex hidden">
         <div className="relative w-48 h-48">
           <Image
             src={beatData.image}
@@ -151,7 +151,7 @@ export default function BottomPlayer() {
             onLoadedMetadata={onLoadedMetadata}
           />
         </div>
-        <div className="flex flex-col items-end gap-1">
+        <div className="lg:flex flex-col items-end gap-1 w-40 hidden">
           <span className="text-primary-content text-xl mr-2">
             {beatData.price} TL
           </span>

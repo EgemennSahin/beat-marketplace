@@ -7,15 +7,13 @@ export default function Navbar() {
     <div className="sticky top-0 navbar justify-between p-4 h-16 space-x-4 w-screen lg:px-16 bg-base-200 z-50">
       <div className="flex-1 space-x-4">
         <Link href="/" className="font-bold text-xl text-base-content">
-          BeatStore
+          B
         </Link>
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Beat ara"
-            className="input input-bordered"
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Beat ara"
+          className="input input-bordered input-sm"
+        />
       </div>
       <div className="flex-none space-x-4">
         <div className="dropdown dropdown-end">
