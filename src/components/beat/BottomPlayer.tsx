@@ -85,11 +85,11 @@ export default function BottomPlayer() {
         </div>
       </div>
 
-      <div className="flex gap-4 bg-base-300 pl-2 pr-4 py-4 items-center rounded-tr-md flex-grow z-10 pointer-events-auto">
+      <div className="flex gap-12 bg-base-300 pl-2 pr-8 pb-4 pt-2 items-end justify-between rounded-tr-md flex-grow z-10 pointer-events-auto">
         <div className="flex gap-4 items-end">
           <div className="flex flex-col">
             <Link
-              className="text-primary-content text-xl hover:underline"
+              className="text-primary-content text-xl hover:underline truncate max-w-xs"
               href={getBeatUrl(beatData)}
             >
               {beatData.name}
@@ -102,40 +102,45 @@ export default function BottomPlayer() {
             </Link>
           </div>
         </div>
+        <div className="flex flex-col items-center grow gap-1">
+          <div className="flex justify-between w-full items-end px-2">
+            <span className="text-base-content">{formatTime(currentTime)}</span>
+            <button
+              className="text-primary-content w-10 h-10 mb-1"
+              onClick={togglePlay}
+            >
+              {isPlaying ? (
+                <PauseCircleIcon className="text-white" />
+              ) : (
+                <PlayCircleIcon className="text-white" />
+              )}
+            </button>
+            <span className="text-base-content">
+              {audioRef.current ? formatTime(duration) : "0:00"}
+            </span>
+          </div>
 
-        <button
-          className="text-primary-content w-12 h-12 text-2xl"
-          onClick={togglePlay}
-        >
-          {isPlaying ? (
-            <PauseCircleIcon className="text-white" />
-          ) : (
-            <PlayCircleIcon className="text-white" />
-          )}
-        </button>
-        <span className="text-base-content mr-2">
-          {formatTime(currentTime)}
-        </span>
-        <div className="flex items-center w-1/3">
           <input
             type="range"
             min="0"
             max={duration || 100}
             value={currentTime}
             onChange={handleRangeChange}
-            className="range range-accent range-xs"
+            className="range range-accent range-xs flex w-full"
+          />
+          <audio
+            ref={audioRef}
+            src={beatData.src}
+            onLoadedMetadata={onLoadedMetadata}
           />
         </div>
+        <div className="flex flex-col items-end gap-1">
+          <span className="text-primary-content text-xl mr-2">
+            {beatData.price} TL
+          </span>
 
-        <span className="text-base-content">
-          {audioRef.current ? formatTime(duration) : "0:00"}
-        </span>
-        <audio
-          ref={audioRef}
-          src={beatData.src}
-          onLoadedMetadata={onLoadedMetadata}
-        />
-        <AddToCartButton beatData={beatData} />
+          <AddToCartButton beatData={beatData} />
+        </div>
       </div>
     </div>
   );
