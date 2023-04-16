@@ -1,8 +1,8 @@
 import { Beat } from "@/components/beat/Beat";
 import AddToCartButton from "@/components/cart/AddToCartButton";
-import { getBeatData } from "@/helpers/getBeatData";
+import { getBeatData } from "@/helpers/database";
 
-export default function Page({
+export default async function Page({
   params,
 }: {
   params: { user: string; beat: string };
@@ -10,7 +10,7 @@ export default function Page({
   // The parameters are in the url
   const { user, beat } = params;
 
-  const beatData = getBeatData(beat);
+  const beatData = await getBeatData(beat);
 
   if (!beatData) return <div>Beat not found</div>;
 

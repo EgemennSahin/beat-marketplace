@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import Image from "next/image";
-import { formatTime } from "@/helpers/getBeatData";
+import { formatTime } from "@/helpers/database";
 import { PauseCircleIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
 import AddToCartButton from "../cart/AddToCartButton";
 import Link from "next/link";
