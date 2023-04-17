@@ -21,17 +21,18 @@ export default function BeatInCart({ beatData }: { beatData: BeatData }) {
           <span className="text-white truncate group-hover:underline">
             {beatData.name}
           </span>
-          <span className="text-white whitespace-nowrap">
+          <span className="text-white whitespace-nowrap group-hover:hidden">
             {beatData.price} TL
           </span>
         </div>
+        <button
+          onClick={() => dispatch(removeFromCart(beatData.id))}
+          className="z-20 h-full w-auto absolute rounded-r-md top-0 right-0 p-2 bg-red-500 text-white opacity-0 group-hover:opacity-100 group-hover:bg-opacity-100 transition-all duration-200"
+        >
+          <TrashIcon className="h-full w-full " />
+        </button>
       </div>
-      <button
-        onClick={() => dispatch(removeFromCart(beatData.id))}
-        className="z-20 absolute rounded-r-md top-0 right-0 p-2 bg-red-500 text-white opacity-0 group-hover:opacity-100 group-hover:bg-opacity-100 transition-all duration-200"
-      >
-        <TrashIcon className="w-5 h-5" />
-      </button>
+
       <Link
         href={`/beat/${beatData.userId}/${beatData.id}`}
         className="absolute inset-0 rounded-md bg-black opacity-0 group-hover:opacity-25 transition-opacity duration-200"

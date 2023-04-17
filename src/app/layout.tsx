@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html className={karla.className} lang="en">
-      <body className="relative overflow-x-hidden">
+      <body className="relative overflow-x-hidden flex flex-col h-screen justify-between">
         <PlayerContextProvider>
           <CartProvider>
             <Navbar />
