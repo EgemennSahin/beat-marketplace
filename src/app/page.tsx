@@ -1,6 +1,8 @@
 import BeatCarousel from "@/components/beat/BeatCarousel";
 import { getBeats } from "@/helpers/database";
 
+export const revalidate = 0;
+
 export default async function Home() {
   const beats = await getBeats();
 
