@@ -50,7 +50,7 @@ export default function BottomPlayer() {
     return () => {
       audioRef.current!.removeEventListener("ended", handleEnded);
     };
-  }, [audioRef.current]);
+  }, []);
 
   // Change time
   useEffect(() => {
