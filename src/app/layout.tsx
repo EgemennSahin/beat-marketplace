@@ -21,11 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html className={karla.className} lang="en">
-      <body className="relative overflow-x-hidden flex flex-col h-screen justify-between">
+      <body className="relative overflow-x-hidden flex flex-col h-screen items-center justify-between">
         <PlayerContextProvider>
           <CartProvider>
             <Navbar />
-            {children}
+            <div className="flex-grow">{children}</div>
             <BottomPlayer />
           </CartProvider>
         </PlayerContextProvider>

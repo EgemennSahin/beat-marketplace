@@ -1,6 +1,7 @@
 import BeatCarousel from "@/components/beat/BeatCarousel";
 import { getBeats } from "@/helpers/database";
 
+// Prevent caching
 export const revalidate = 0;
 
 export default async function Home() {
