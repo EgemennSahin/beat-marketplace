@@ -42,10 +42,7 @@ export async function getBeatData(id: string): Promise<BeatData> {
 // Get all beats from the database
 // This is for testing, not for production
 export async function getBeats(): Promise<BeatData[]> {
-  let { data, error } = await supabase
-    .from("beats")
-    .select("*")
-    .order("created_at", { ascending: false });
+  let { data, error } = await supabase.from("beats").select("*");
 
   if (error) {
     throw error;
@@ -57,21 +54,6 @@ export async function getBeats(): Promise<BeatData[]> {
 
   // Convert the supabase response to a more usable format
   return data.map((data) => convertResponseToBeatData(data));
-}
-
-export function realtimeData() {
-  const beats = supabase
-    .channel("custom-all-channel")
-    .on(
-      "postgres_changes",
-      { event: "*", schema: "public", table: "beats" },
-      (payload) => {
-        console.log("Change received!", payload);
-      }
-    )
-    .subscribe();
-
-  return beats;
 }
 
 export function formatTime(time: number): string {
