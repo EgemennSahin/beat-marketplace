@@ -7,6 +7,7 @@ import {
   totalPriceSelector,
 } from "@/store/features/cartSlice";
 import { useAppSelector } from "@/store/store";
+import Link from "next/link";
 
 export default function VideoCartButton() {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
@@ -34,7 +35,9 @@ export default function VideoCartButton() {
             Toplam: {totalPrice} TL
           </span>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block">Devam et</button>
+            <Link href="/checkout" className="btn btn-primary btn-block">
+              Devam et
+            </Link>
           </div>
         </div>
       </div>

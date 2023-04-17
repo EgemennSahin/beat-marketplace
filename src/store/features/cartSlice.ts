@@ -26,9 +26,9 @@ export const cartSlice = createSlice({
 
       state.cartItems.push(action.payload);
     },
-    removeFromCart: (state, action: PayloadAction<BeatData>) => {
+    removeFromCart: (state, action: PayloadAction<string>) => {
       const item = state.cartItems.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload
       );
 
       // If item doesn't exist, don't remove its
@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
       }
 
       state.cartItems = state.cartItems.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.id !== action.payload
       );
     },
   },

@@ -27,7 +27,7 @@ export default function BeatInCart({ beatData }: { beatData: BeatData }) {
         </div>
       </div>
       <button
-        onClick={() => dispatch(removeFromCart(beatData))}
+        onClick={() => dispatch(removeFromCart(beatData.id))}
         className="z-20 absolute rounded-r-md top-0 right-0 p-2 bg-red-500 text-white opacity-0 group-hover:opacity-100 group-hover:bg-opacity-100 transition-all duration-200"
       >
         <TrashIcon className="w-5 h-5" />
