@@ -4,6 +4,7 @@ import { CartProvider } from "@/providers/CartProvider";
 import BottomPlayer from "@/components/player/BottomPlayer";
 import { Karla } from "next/font/google";
 import { PlayerContextProvider } from "@/providers/BottomPlayerProvider";
+import SupabaseProvider from "@/providers/SupabaseProvider";
 
 const karla = Karla({
   subsets: ["latin"],
@@ -22,13 +23,16 @@ export default function RootLayout({
   return (
     <html className={karla.className} lang="en">
       <body className="relative overflow-x-hidden flex flex-col h-screen items-center justify-between">
-        <PlayerContextProvider>
-          <CartProvider>
-            <Navbar />
-            <div className="flex-grow">{children}</div>
-            <BottomPlayer />
-          </CartProvider>
-        </PlayerContextProvider>
+        <SupabaseProvider>
+          <PlayerContextProvider>
+            <CartProvider>
+              {/* @ts-expect-error Server Component */}
+              <Navbar />
+              <div className="flex-grow">{children}</div>
+              <BottomPlayer />
+            </CartProvider>
+          </PlayerContextProvider>
+        </SupabaseProvider>
       </body>
     </html>
   );

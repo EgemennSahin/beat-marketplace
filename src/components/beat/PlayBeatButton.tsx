@@ -19,9 +19,9 @@ export default function PlayBeatButton({ beatData }: PlayBeatButtonProps) {
   return (
     <button
       onClick={showPlayer}
-      className="flex absolute z-50 bottom-1/2 right-1/2 translate-y-1/2 translate-x-1/2 bg-accent rounded-full items-center justify-center hover:bg-accent-focus opacity-0 group-hover:opacity-90 transition-opacity"
+      className="flex absolute h-full w-full z-50 bottom-1/2 right-1/2 translate-y-1/2 translate-x-1/2 items-center justify-center opacity-0 group-hover:opacity-90 transition-opacity"
     >
-      <PlayCircleIcon className="w-16 h-16 text-white" />
+      <PlayCircleIcon className="w-16 h-16 text-white  bg-accent rounded-full hover:bg-accent-focus" />
     </button>
   );
 }

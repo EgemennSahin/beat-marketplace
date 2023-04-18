@@ -1,7 +1,7 @@
 "use client";
 
 // SignUp.tsx
-import { signUpWithEmail } from "@/helpers/auth";
+import { useSupabase } from "@/providers/SupabaseProvider";
 import React, { useEffect, useState } from "react";
 
 export default function AuthenticationForm() {
@@ -10,15 +10,24 @@ export default function AuthenticationForm() {
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
+  const { supabase } = useSupabase();
 
-    try {
-      await signUpWithEmail(email, password);
-    } catch (err: any) {
-      setError(err.message);
-    }
+  const handleSignUp = async () => {
+    await supabase.auth.signUp({
+      email: "testing@example.com",
+      password: "123456",
+    });
+  };
+
+  const handleLogin = async () => {
+    await supabase.auth.signInWithPassword({
+      email: "testing@example.com",
+      password: "123456",
+    });
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
   };
 
   useEffect(() => {
@@ -48,7 +57,7 @@ export default function AuthenticationForm() {
           </div>
         </div>
       )}
-      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-6">
         <h1 className="text-3xl font-semibold">Kayıt Ol</h1>
 
         <div>
@@ -84,6 +93,10 @@ export default function AuthenticationForm() {
           Kayıt Ol
         </button>
       </form>
+
+      <button onClick={handleSignUp}>Sign Up</button>
+      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

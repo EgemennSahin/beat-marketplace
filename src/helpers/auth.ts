@@ -1,16 +1,23 @@
 // auth.ts
 import { supabase } from "@/config/supabaseClient";
+import { SupabaseClient } from "@supabase/supabase-js";
 
-export async function signUpWithEmail(email: string, password: string) {
-  const { data, error } = await supabase.auth.signUp({ email, password });
+export async function handleSignUp() {
+  await supabase.auth.signUp({
+    email: "testing@example.com",
+    password: "123456",
+  });
+}
 
-  const { user, session } = data;
+export async function handleLogin() {
+  await supabase.auth.signInWithPassword({
+    email: "testing@example.com",
+    password: "123456",
+  });
+}
 
-  if (error) {
-    throw new Error(translateError(error.message));
-  }
-
-  return user;
+export async function handleLogout(supabase: SupabaseClient) {
+  await supabase.auth.signOut();
 }
 
 function translateError(errorCode: string): string {
