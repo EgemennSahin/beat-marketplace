@@ -3,16 +3,11 @@ import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-next
 import Image from "next/image";
 import { headers, cookies } from "next/headers";
 import Link from "next/link";
-import { handleLogout } from "@/helpers/auth";
+import { getSupabaseServerComponent, handleLogout } from "@/helpers/auth";
 import { LogoutButton } from "./LogoutButton";
 
 export default async function UserAvatar() {
-  const supabase = createServerComponentSupabaseClient<Database>({
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
-    headers,
-    cookies,
-  });
+  const supabase = await getSupabaseServerComponent();
 
   const { data } = await supabase.auth.getUser();
   const user = data.user!;
@@ -20,11 +15,11 @@ export default async function UserAvatar() {
   if (!user?.id) {
     return (
       <div className="flex gap-2">
-        <Link href="/auth" className="btn btn-primary">
-          Giriş yap
-        </Link>
-        <Link href="/auth" className="btn btn-primary btn-outline">
-          Kayıt ol
+        <Link
+          href="/auth"
+          className="btn bg-gradient-to-br from-primary hover:from-primary-focus to-secondary hover:to-secondary-focus text-white normal-case"
+        >
+          Kayıt / Giriş
         </Link>
       </div>
     );

@@ -1,6 +1,9 @@
 // auth.ts
 import { supabase } from "@/config/supabaseClient";
 import { SupabaseClient } from "@supabase/supabase-js";
+import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { headers, cookies } from "next/headers";
+import { Database } from "@/interfaces/supabase";
 
 export async function handleSignUp() {
   await supabase.auth.signUp({
@@ -29,4 +32,15 @@ function translateError(errorCode: string): string {
   return (
     errorTranslations[errorCode] || "Bir hata oluştu. Lütfen tekrar deneyin."
   );
+}
+
+export async function getSupabaseServerComponent() {
+  const supabase = createServerComponentSupabaseClient<Database>({
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
+    headers,
+    cookies,
+  });
+
+  return supabase;
 }

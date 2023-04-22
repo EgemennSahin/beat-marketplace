@@ -9,25 +9,46 @@ export default function AuthenticationForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [mode, setMode] = useState<"login" | "signup">("login");
 
   const { supabase } = useSupabase();
 
   const handleSignUp = async () => {
     await supabase.auth.signUp({
-      email: "testing@example.com",
-      password: "123456",
+      email: email,
+      password: password,
     });
   };
 
   const handleLogin = async () => {
-    await supabase.auth.signInWithPassword({
-      email: "testing@example.com",
-      password: "123456",
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        setError("Hatalı email veya şifre");
+      }
+    } catch (err: any) {
+      setError(err.message);
+    }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  const handleSubmit = async () => {
+    if (mode === "signup") {
+      await handleSignUp();
+    } else {
+      await handleLogin();
+    }
+  };
+
+  const toggleMode = () => {
+    if (mode === "signup") {
+      setMode("login");
+    } else {
+      setMode("signup");
+    }
   };
 
   useEffect(() => {
@@ -37,11 +58,11 @@ export default function AuthenticationForm() {
   }, [error]);
 
   return (
-    <div className="flex items-center justify-center bg-base-300 py-4 px-12 rounded-md">
+    <div className="flex items-center justify-center">
       {showModal && (
         <div className="absolute top-0 z-50 flex justify-center">
           <div className="alert alert-error">
-            <div className="flex-1">
+            <div className="inline-block">
               <label className="text-xl font-semibold">Hata</label>
               <p>{error}</p>
             </div>
@@ -57,8 +78,16 @@ export default function AuthenticationForm() {
           </div>
         </div>
       )}
-      <form className="flex flex-col gap-6">
-        <h1 className="text-3xl font-semibold">Kayıt Ol</h1>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        className="flex flex-col gap-4 mt-8 bg-base-300 py-4 px-12 rounded-md"
+      >
+        <h1 className="text-3xl font-semibold">
+          {mode == "signup" ? "Kayıt Ol" : "Giriş Yap"}
+        </h1>
 
         <div>
           <label className="block text-sm mb-2" htmlFor="email">
@@ -86,17 +115,24 @@ export default function AuthenticationForm() {
             required
           />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white rounded-md py-2"
-        >
-          Kayıt Ol
-        </button>
-      </form>
+        <div className="flex flex-col mt-4">
+          <button type="submit" className="btn btn-primary">
+            {mode == "signup" ? "Kayıt Ol" : "Giriş Yap"}
+          </button>
 
-      <button onClick={handleSignUp}>Sign Up</button>
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleLogout}>Logout</button>
+          <div className="divider"> Ya da </div>
+
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              toggleMode();
+            }}
+            className="btn btn-ghost self-center"
+          >
+            {mode == "signup" ? "Giriş Yap" : "Kayıt Ol"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
