@@ -42,7 +42,11 @@ export default function VideoCartButton() {
         <div className="card-body gap-4">
           <span className="font-bold text-lg">{totalItems} Beat</span>
           {cartItems.map((beatData) => (
-            <BeatInCart key={beatData.id} beatData={beatData} />
+            <BeatInCart
+              key={beatData.id}
+              beatData={beatData}
+              showTrashIcon={false}
+            />
           ))}
           <span className="text-info text-end mr-1.5">
             Toplam: {totalPrice} TL
