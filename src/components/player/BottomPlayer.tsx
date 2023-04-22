@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, ChangeEvent } from "react";
+import { useState, useRef, useEffect, ChangeEvent, TouchEvent } from "react";
 import Image from "next/image";
 import { formatTime } from "@/helpers/database";
 import { PauseCircleIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
@@ -97,6 +97,19 @@ export default function BottomPlayer() {
     if (!isPlaying) setIsPlaying(true);
   };
 
+  const handleTouchStart = (e: TouchEvent<HTMLInputElement>) => {
+    const input = e.target as HTMLInputElement;
+    const rect = input.getBoundingClientRect();
+    const ratio = (e.touches[0].clientX - rect.left) / rect.width;
+    const newTime = ratio * (duration || 100);
+
+    setCurrentTime(newTime);
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
+    }
+    if (!isPlaying) setIsPlaying(true);
+  };
+
   // Get the duration of the beat
   const onLoadedMetadata = () => {
     if (!audioRef.current) return;
@@ -163,6 +176,7 @@ export default function BottomPlayer() {
               max={duration || 100}
               value={currentTime}
               onChange={handleRangeChange}
+              onTouchStart={handleTouchStart}
               className="range range-xs order-first lg:order-2"
             />
             <div className="flex lg:hidden w-full justify-between items-center">
