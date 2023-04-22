@@ -10,6 +10,12 @@ export const revalidate = 0;
 export default async function LibraryPage() {
   const supabase = await getSupabaseServerComponent();
 
+  // If the user is not logged in, redirect to the login page
+  if ((await supabase.auth.getUser()).data.user === null) {
+    redirect("/auth");
+    return;
+  }
+
   // Get the user id from the session
   const beats = await getBeatsBoughtByUser(supabase);
 
