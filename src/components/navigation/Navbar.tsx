@@ -12,7 +12,7 @@ export default async function Navbar() {
         <input
           type="text"
           placeholder="Beat ara"
-          className="input input-bordered input-sm"
+          className="input input-bordered input-sm w-full lg:w-auto"
         />
       </div>
       <div className="flex-none space-x-4">
