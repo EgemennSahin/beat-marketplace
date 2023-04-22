@@ -8,15 +8,26 @@ import {
 } from "@/store/features/cartSlice";
 import { useAppSelector } from "@/store/store";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function VideoCartButton() {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const totalItems = useAppSelector(totalItemSelector);
   const totalPrice = useAppSelector(totalPriceSelector);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="dropdown dropdown-end">
-      <button tabIndex={0} className="btn btn-ghost btn-circle">
+    <div className={`dropdown dropdown-end${isOpen ? " open" : ""}`}>
+      <button
+        tabIndex={0}
+        className="btn btn-ghost btn-circle"
+        onClick={toggleDropdown}
+      >
         <div className="indicator">
           <ShoppingCartIcon className="w-8 h-8" />
           <span className="badge badge-md indicator-item">{totalItems}</span>
@@ -24,7 +35,9 @@ export default function VideoCartButton() {
       </button>
       <div
         tabIndex={0}
-        className="mt-4 card card-compact dropdown-content w-72 bg-base-200 shadow-2xl"
+        className={`mt-4 card card-compact dropdown-content w-72 bg-base-200 shadow-2xl${
+          isOpen ? " block" : " hidden"
+        }`}
       >
         <div className="card-body gap-4">
           <span className="font-bold text-lg">{totalItems} Beat</span>
