@@ -122,7 +122,7 @@ export default function BottomPlayer() {
               className="text-primary-content text-xl hover:underline truncate w-full"
               href={getBeatUrl(beatData)}
             >
-              adfakjshdfkasdfkgsdhjkasgdfaskdjhgf
+              {beatData.name}
             </Link>
             <Link
               href={getUserUrl(beatData.userId)}

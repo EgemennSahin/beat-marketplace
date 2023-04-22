@@ -30,7 +30,9 @@ export default function VideoCartButton() {
       >
         <div className="indicator">
           <ShoppingCartIcon className="w-8 h-8" />
-          <span className="badge badge-md indicator-item">{totalItems}</span>
+          <span className="badge badge-sm badge-primary indicator-item">
+            {totalItems}
+          </span>
         </div>
       </label>
       <div
