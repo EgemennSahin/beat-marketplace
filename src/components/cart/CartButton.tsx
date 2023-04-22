@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import BeatInCart from "./BeatInCart";
 import {
@@ -8,7 +9,6 @@ import {
 } from "@/store/features/cartSlice";
 import { useAppSelector } from "@/store/store";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function VideoCartButton() {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
@@ -23,7 +23,7 @@ export default function VideoCartButton() {
 
   return (
     <div className={`dropdown dropdown-end${isOpen ? " open" : ""}`}>
-      <button
+      <label
         tabIndex={0}
         className="btn btn-ghost btn-circle"
         onClick={toggleDropdown}
@@ -32,7 +32,7 @@ export default function VideoCartButton() {
           <ShoppingCartIcon className="w-8 h-8" />
           <span className="badge badge-md indicator-item">{totalItems}</span>
         </div>
-      </button>
+      </label>
       <div
         tabIndex={0}
         className={`mt-4 card card-compact dropdown-content w-72 bg-base-200 shadow-2xl${
