@@ -22,6 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html className={karla.className} lang="en">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
+
       <body className="relative overflow-x-hidden flex flex-col h-screen items-center justify-between">
         <SupabaseProvider>
           <PlayerContextProvider>
