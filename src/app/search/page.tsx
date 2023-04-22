@@ -15,7 +15,7 @@ export default async function SearchPage({
 
   return (
     <div>
-      <h1>Search Results for "{q}"</h1>
+      <h1>Search Results for {q}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {searchResults.map((beat) => (
           <Beat key={beat.id} beatData={beat} />
