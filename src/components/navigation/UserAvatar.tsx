@@ -37,7 +37,7 @@ export default async function UserAvatar() {
         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li>
-          <a className="justify-between">Profil</a>
+          <Link href="/library">Beatlerin</Link>
         </li>
         <li>
           <a>Ayarlar</a>

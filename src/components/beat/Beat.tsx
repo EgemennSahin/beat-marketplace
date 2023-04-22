@@ -2,7 +2,7 @@ import { BeatData } from "@/interfaces/BeatData";
 import Image from "next/image";
 import Link from "next/link";
 import PlayBeatButton from "./PlayBeatButton";
-import { getBeatUrl, getUserUrl } from "@/helpers/getRoutings";
+import { getBeatUrl, getUserUrl } from "@/helpers/routing";
 
 export function Beat({ beatData }: { beatData: BeatData }) {
   return (

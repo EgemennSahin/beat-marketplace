@@ -39,9 +39,7 @@ export async function getBeatData(id: string): Promise<BeatData> {
   return convertResponseToBeatData(beat);
 }
 
-// Get all beats from the database
-// This is for testing, not for production
-export async function getBeats(query: string): Promise<BeatData[]> {
+export async function searchBeats(query: string): Promise<BeatData[]> {
   let { data, error } = await supabase
     .from("beats")
     .select("*")
@@ -57,6 +55,37 @@ export async function getBeats(query: string): Promise<BeatData[]> {
 
   // Convert the supabase response to a more usable format
   return data.map((data) => convertResponseToBeatData(data));
+}
+
+// Get all beats bought by a specific user
+export async function getBeatsBoughtByUser(
+  supabaseServerComponent: any
+): Promise<BeatData[]> {
+  const { data, error } = await supabaseServerComponent
+    .from("transactions")
+    .select(
+      `
+      beat_id,
+      beats (
+        name,
+        user_id,
+        user_name,
+        price
+      )
+    `
+    );
+
+  console.log("Data: ", data);
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    return [];
+  }
+
+  // Convert the supabase response to a more usable format
+  return data.map((data: any) => convertResponseToBeatData(data.beats));
 }
 
 export function formatTime(time: number): string {

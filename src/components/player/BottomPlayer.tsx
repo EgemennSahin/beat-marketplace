@@ -6,7 +6,7 @@ import { formatTime } from "@/helpers/database";
 import { PauseCircleIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
 import AddToCartButton from "../cart/AddToCartButton";
 import Link from "next/link";
-import { getBeatUrl, getUserUrl } from "@/helpers/getRoutings";
+import { getBeatUrl, getUserUrl } from "@/helpers/routing";
 import { usePlayerContext } from "@/providers/BottomPlayerProvider";
 
 export default function BottomPlayer() {

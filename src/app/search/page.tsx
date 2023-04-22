@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { BeatData } from "@/interfaces/BeatData";
 import { Beat } from "@/components/beat/Beat";
-import { getBeats } from "@/helpers/database";
+import { searchBeats } from "@/helpers/database";
 
 export default async function SearchPage({
   searchParams,
@@ -11,7 +11,7 @@ export default async function SearchPage({
 }) {
   const { q } = searchParams;
   console.log(searchParams);
-  const searchResults: BeatData[] = await getBeats(q);
+  const searchResults: BeatData[] = await searchBeats(q);
 
   return (
     <div>
