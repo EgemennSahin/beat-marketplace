@@ -22,7 +22,7 @@ export default function VideoCartButton() {
   };
 
   return (
-    <div className={`dropdown dropdown-end${isOpen ? " open" : ""}`}>
+    <div className={`z-50 dropdown dropdown-end${isOpen ? " open" : ""}`}>
       <label
         tabIndex={0}
         className="btn btn-ghost btn-circle"
