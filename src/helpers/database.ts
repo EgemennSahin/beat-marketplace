@@ -41,8 +41,11 @@ export async function getBeatData(id: string): Promise<BeatData> {
 
 // Get all beats from the database
 // This is for testing, not for production
-export async function getBeats(): Promise<BeatData[]> {
-  let { data, error } = await supabase.from("beats").select("*");
+export async function getBeats(query: string): Promise<BeatData[]> {
+  let { data, error } = await supabase
+    .from("beats")
+    .select("*")
+    .ilike("name", `%${query}%`);
 
   if (error) {
     throw error;

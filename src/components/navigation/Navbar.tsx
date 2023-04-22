@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ViewCartButton from "../cart/CartButton";
 import UserAvatar from "./UserAvatar";
+import Search from "./Search";
 
 export default async function Navbar() {
   return (
@@ -9,11 +10,8 @@ export default async function Navbar() {
         <Link href="/" className="font-bold text-xl text-base-content">
           B
         </Link>
-        <input
-          type="text"
-          placeholder="Beat ara"
-          className="input input-bordered input-sm w-full lg:w-auto"
-        />
+
+        <Search />
       </div>
       <div className="flex-none space-x-4">
         {/* @ts-expect-error Server Component */}
