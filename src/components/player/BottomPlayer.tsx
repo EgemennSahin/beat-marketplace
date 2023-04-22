@@ -71,6 +71,23 @@ export default function BottomPlayer() {
     setIsPlaying(!isPlaying);
   };
 
+  // Handle spacebar press
+  useEffect(() => {
+    const handleSpacePress = (event: KeyboardEvent) => {
+      console.log("here");
+      if (event.code === "Space") {
+        event.preventDefault();
+        togglePlay();
+      }
+    };
+
+    window.addEventListener("keydown", handleSpacePress);
+
+    return () => {
+      window.removeEventListener("keydown", handleSpacePress);
+    };
+  }, [togglePlay]);
+
   // Controls to change the time of the beat
   const handleRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!audioRef.current) return;
