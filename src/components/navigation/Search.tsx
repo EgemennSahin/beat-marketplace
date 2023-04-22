@@ -15,7 +15,7 @@ export default function Search() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full lg:w-auto space-x-1">
+    <form onSubmit={handleSubmit} className="flex gap-1 w-full lg:w-auto">
       <input
         type="text"
         placeholder="Beat ara"
