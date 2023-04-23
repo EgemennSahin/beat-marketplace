@@ -37,11 +37,31 @@ export async function getBeatData(id: string): Promise<BeatData> {
   return convertResponseToBeatData(beat);
 }
 
+async function getUsersWithMatchingUsername(query: string): Promise<string[]> {
+  const { data, error } = await supabase
+    .from("users")
+    .select("id")
+    .ilike("user_name", `%${query}%`);
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    return [];
+  }
+
+  return data.map((user) => user.id);
+}
+
 export async function searchBeats(query: string): Promise<BeatData[]> {
+  // Fetch the beats of users that match the query
+  const userIds = await getUsersWithMatchingUsername(query);
+
   let { data, error } = await supabase
     .from("beats")
     .select("*")
-    .ilike("name", `%${query}%`);
+    .or(`name.ilike.%${query}%,user_id.in.(${userIds.join(",")})`);
 
   if (error) {
     throw error;
