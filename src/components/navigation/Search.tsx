@@ -20,6 +20,7 @@ export default function Search() {
         type="text"
         placeholder="Beat ara"
         value={searchTerm}
+        onKeyDown={(e) => e.stopPropagation()}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="input input-bordered input-sm w-full lg:w-auto"
       />
