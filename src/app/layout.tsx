@@ -33,7 +33,7 @@ export default function RootLayout({
             <CartProvider>
               {/* @ts-expect-error Server Component */}
               <Navbar />
-              <div className="flex-grow">{children}</div>
+              <div className="flex-grow pt-16">{children}</div>
               <BottomPlayer />
             </CartProvider>
           </PlayerContextProvider>

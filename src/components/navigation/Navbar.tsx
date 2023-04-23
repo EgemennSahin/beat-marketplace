@@ -5,7 +5,7 @@ import Search from "./Search";
 
 export default async function Navbar() {
   return (
-    <div className="sticky top-0 navbar justify-between p-4 h-16 space-x-4 w-screen lg:px-16 bg-base-200 z-50">
+    <div className="fixed top-0 navbar justify-between p-4 h-16 space-x-4 w-screen lg:px-16 bg-base-200 z-50">
       <div className="flex-1 space-x-4">
         <Link href="/" className="font-bold text-xl text-base-content">
           B
