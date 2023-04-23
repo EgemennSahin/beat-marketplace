@@ -1,5 +1,7 @@
 import { supabase } from "@/config/supabaseClient";
 import { BeatData } from "@/interfaces/BeatData";
+import { Database } from "@/interfaces/supabase";
+import { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 // Convert the supabase response to a BeatData object
 function convertResponseToBeatData(response: any): BeatData {
@@ -14,6 +16,8 @@ function convertResponseToBeatData(response: any): BeatData {
   };
 }
 
+// Convert the supabase response to a User object
+
 // Get a single beat from the database
 export async function getBeatData(id: string): Promise<BeatData> {
   let { data: beat, error } = await supabase
@@ -27,13 +31,7 @@ export async function getBeatData(id: string): Promise<BeatData> {
   }
 
   if (!beat) {
-    beat = {
-      id: "",
-      name: "",
-      price: 0,
-      user_id: "",
-      user_name: "",
-    };
+    throw new Error("Beat not found");
   }
 
   return convertResponseToBeatData(beat);
@@ -86,6 +84,47 @@ export async function getBeatsBoughtByUser(
 
   // Convert the supabase response to a more usable format
   return data.map((data: any) => convertResponseToBeatData(data.beats));
+}
+
+// Get all beats uploaded by a specific user
+export async function getBeatsUploadedByUser(
+  supabaseServerComponent: SupabaseClient<Database, "public">,
+  userId: string
+): Promise<BeatData[]> {
+  const { data, error } = await supabaseServerComponent
+    .from("beats")
+    .select("*")
+    .eq("user_id", userId);
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    return [];
+  }
+
+  // Convert the supabase response to a more usable format
+  return data.map((data: any) => convertResponseToBeatData(data));
+}
+
+// Get the user data from id
+export async function getUserData(userId: string) {
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", userId)
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  return data;
 }
 
 export function formatTime(time: number): string {
