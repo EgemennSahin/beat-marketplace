@@ -5,6 +5,8 @@ import BottomPlayer from "@/components/player/BottomPlayer";
 import { Karla } from "next/font/google";
 import { PlayerContextProvider } from "@/providers/BottomPlayerProvider";
 import SupabaseProvider from "@/providers/SupabaseProvider";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const karla = Karla({
   subsets: ["latin"],
@@ -33,7 +35,9 @@ export default function RootLayout({
             <CartProvider>
               {/* @ts-expect-error Server Component */}
               <Navbar />
-              <div className="flex-grow pt-16">{children}</div>
+              <Suspense fallback={<Loading />}>
+                <div className="flex-grow pt-16">{children}</div>
+              </Suspense>
               <BottomPlayer />
             </CartProvider>
           </PlayerContextProvider>
