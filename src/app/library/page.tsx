@@ -1,14 +1,13 @@
 // pages/search.tsx
 import { redirect } from "next/navigation";
-import { BeatData } from "@/interfaces/BeatData";
 import { Beat } from "@/components/beat/Beat";
 import { getBeatsBoughtByUser, searchBeats } from "@/helpers/database";
-import { getSupabaseServerComponent } from "@/helpers/auth";
+import { getSupabaseServerClient } from "@/helpers/supabase";
 
 export const revalidate = 0;
 
 export default async function LibraryPage() {
-  const supabase = await getSupabaseServerComponent();
+  const supabase = await getSupabaseServerClient();
 
   // If the user is not logged in, redirect to the login page
   if ((await supabase.auth.getUser()).data.user === null) {
