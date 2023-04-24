@@ -1,5 +1,5 @@
 export interface BeatData {
-  id: string;
+  id: number;
   name: string;
   src: string;
   price: number;

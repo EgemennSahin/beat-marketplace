@@ -93,7 +93,6 @@ export async function getBeatsBoughtByUser(
     `
     );
 
-  console.log("Data: ", data);
   if (error) {
     throw error;
   }
@@ -108,9 +107,16 @@ export async function getBeatsBoughtByUser(
 
 export async function addTransactionToTable(
   supabase: SupabaseClient,
-  user: User,
   beatId: number
 ) {
+  const { data: userData } = await supabase.auth.getUser();
+
+  if (!userData || !userData.user?.id) {
+    throw new Error("User not found");
+  }
+
+  const user = userData.user;
+
   const { data, error } = await supabase
     .from("transactions")
     .insert([{ buyer_id: user.id, beat_id: beatId }]);
@@ -122,8 +128,6 @@ export async function addTransactionToTable(
   if (!data) {
     return [];
   }
-
-  console.log("Data: ", data);
 
   return data;
 }

@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
 
       state.cartItems.push(action.payload);
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
+    removeFromCart: (state, action: PayloadAction<number>) => {
       const item = state.cartItems.find((item) => item.id === action.payload);
 
       // If item doesn't exist, don't remove its
@@ -49,7 +49,7 @@ export const cartSlice = createSlice({
 const cartItems = (state: RootState) => state.cart.cartItems;
 
 export const itemInCartSelector = createSelector(
-  [cartItems, (cartItems, beatId: string) => beatId],
+  [cartItems, (cartItems, beatId: number) => beatId],
   (cartItems, beatId) => {
     return cartItems.find((item) => item.id === beatId);
   }

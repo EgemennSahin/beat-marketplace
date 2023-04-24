@@ -28,7 +28,7 @@ export default function CheckoutPage() {
             <div className="mb-4">
               <span className="font-bold text-xl">Toplam: {totalPrice} TL</span>
             </div>
-            <CheckoutButton />
+            <CheckoutButton beats={cartItems} />
           </div>
         </div>
       </div>

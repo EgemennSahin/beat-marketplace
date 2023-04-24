@@ -1,30 +1,17 @@
 "use client";
 
 import { addTransactionToTable } from "@/helpers/database";
+import { BeatData } from "@/interfaces/BeatData";
 import { useSupabase } from "@/providers/SupabaseProvider";
-import { User } from "@supabase/supabase-js";
-import React, { useEffect, useState } from "react";
-export default function CheckoutButton() {
-  const [user, setUser] = useState<User>();
+import { clearCart } from "@/store/features/cartSlice";
+import { useAppDispatch } from "@/store/store";
+import { useRouter } from "next/navigation";
+import React from "react";
+
+export default function CheckoutButton({ beats }: { beats: BeatData[] }) {
+  const router = useRouter();
   const supabase = useSupabase();
-
-  useEffect(() => {
-    const getUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error(error);
-        return;
-      }
-
-      if (!data) {
-        return;
-      }
-
-      setUser(data.user);
-    };
-
-    getUser();
-  }, []);
+  const dispatch = useAppDispatch();
 
   return (
     <button
@@ -32,14 +19,13 @@ export default function CheckoutButton() {
         // TODO: Implement payment
         // If payment is successful:
         // clear cart
-        // dispatch(clearCart());
+        dispatch(clearCart());
         // add transaction to table
-
-        if (!user) {
-          return;
+        for (let beat in beats) {
+          addTransactionToTable(supabase, beats[beat].id);
         }
-        addTransactionToTable(supabase, user, 8);
         // redirect to library
+        router.push("/library");
       }}
       className="btn btn-primary"
     >
