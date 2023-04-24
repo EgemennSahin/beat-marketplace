@@ -24,7 +24,7 @@ export default function Search() {
         onChange={(e) => setSearchTerm(e.target.value)}
         className="input input-bordered input-sm w-full lg:w-auto"
       />
-      <button type="submit" className="btn btn-sm btn-ghost">
+      <button type="submit" className="btn btn-sm btn-ghost hidden lg:block">
         Ara
       </button>
     </form>

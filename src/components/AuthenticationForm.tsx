@@ -11,7 +11,7 @@ export default function AuthenticationForm() {
   const [showModal, setShowModal] = useState(false);
   const [mode, setMode] = useState<"login" | "signup">("login");
 
-  const { supabase } = useSupabase();
+  const supabase = useSupabase();
 
   const handleSignUp = async () => {
     await supabase.auth.signUp({
@@ -83,7 +83,9 @@ export default function AuthenticationForm() {
           e.preventDefault();
           handleSubmit();
         }}
-        className="flex flex-col gap-4 mt-8 bg-base-300 py-4 px-12 rounded-md"
+        className={`flex flex-col gap-4 mt-8 ${
+          mode == "login" ? "bg-base-300" : "bg-base-200"
+        } p-12 rounded-md`}
       >
         <h1 className="text-3xl font-semibold">
           {mode == "signup" ? "Kayıt Ol" : "Giriş Yap"}
@@ -116,7 +118,12 @@ export default function AuthenticationForm() {
           />
         </div>
         <div className="flex flex-col mt-4">
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className={`btn ${
+              mode == "signup" ? "btn-primary" : "btn-secondary"
+            }`}
+          >
             {mode == "signup" ? "Kayıt Ol" : "Giriş Yap"}
           </button>
 

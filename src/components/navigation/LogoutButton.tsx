@@ -9,7 +9,7 @@ export function LogoutButton() {
   return (
     <button
       onClick={() => {
-        supabase.supabase.auth.signOut();
+        supabase.auth.signOut();
       }}
     >
       Oturumu kapat

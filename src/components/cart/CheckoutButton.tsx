@@ -6,7 +6,7 @@ import { User } from "@supabase/supabase-js";
 import React, { useEffect, useState } from "react";
 export default function CheckoutButton() {
   const [user, setUser] = useState<User>();
-  const supabase = useSupabase().supabase;
+  const supabase = useSupabase();
 
   useEffect(() => {
     const getUser = async () => {

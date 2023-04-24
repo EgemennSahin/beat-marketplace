@@ -1,6 +1,6 @@
 import { Beat } from "@/components/beat/Beat";
-import { getSupabaseServerComponent } from "@/helpers/auth";
 import { getBeatsUploadedByUser, getUserData } from "@/helpers/database";
+import { getSupabaseServerClient } from "@/helpers/supabase";
 
 export const revalidate = 0;
 
@@ -11,7 +11,7 @@ export default async function UserPage({
 }) {
   const { user } = params;
 
-  const supabase = await getSupabaseServerComponent();
+  const supabase = await getSupabaseServerClient();
 
   const userData = await getUserData(user);
 

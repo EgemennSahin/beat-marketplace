@@ -52,5 +52,5 @@ export const useSupabase = () => {
     throw new Error("useSupabase must be used inside SupabaseProvider");
   }
 
-  return context;
+  return context.supabase;
 };
