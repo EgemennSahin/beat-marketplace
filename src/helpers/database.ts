@@ -1,7 +1,7 @@
 import { supabase } from "@/config/supabaseClient";
 import { BeatData } from "@/interfaces/BeatData";
 import { Database } from "@/interfaces/supabase";
-import { SupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { SupabaseClient, User } from "@supabase/auth-helpers-nextjs";
 
 // Convert the supabase response to a BeatData object
 function convertResponseToBeatData(response: any): BeatData {
@@ -55,7 +55,7 @@ async function getUsersWithMatchingUsername(query: string): Promise<string[]> {
 }
 
 export async function searchBeats(query: string): Promise<BeatData[]> {
-  // Fetch the beats of users that match the query
+  // Fetch the ids of users that match the query
   const userIds = await getUsersWithMatchingUsername(query);
 
   let { data, error } = await supabase
@@ -104,6 +104,28 @@ export async function getBeatsBoughtByUser(
 
   // Convert the supabase response to a more usable format
   return data.map((data: any) => convertResponseToBeatData(data.beats));
+}
+
+export async function addTransactionToTable(
+  supabase: SupabaseClient,
+  user: User,
+  beatId: number
+) {
+  const { data, error } = await supabase
+    .from("transactions")
+    .insert([{ buyer_id: user.id, beat_id: beatId }]);
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    return [];
+  }
+
+  console.log("Data: ", data);
+
+  return data;
 }
 
 // Get all beats uploaded by a specific user

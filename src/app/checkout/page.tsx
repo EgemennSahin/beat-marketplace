@@ -1,23 +1,14 @@
 "use client";
 
 import React from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  totalItemSelector,
-  totalPriceSelector,
-  removeFromCart,
-} from "@/store/features/cartSlice";
-import { useAppSelector, useAppDispatch } from "@/store/store";
+import { totalPriceSelector } from "@/store/features/cartSlice";
+import { useAppSelector } from "@/store/store";
 import BeatInCart from "@/components/cart/BeatInCart";
+import CheckoutButton from "@/components/cart/CheckoutButton";
 
 export default function CheckoutPage() {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const totalPrice = useAppSelector(totalPriceSelector);
-  const dispatch = useAppDispatch();
-
-  const removeItemFromCart = (itemId: string) => {
-    dispatch(removeFromCart(itemId));
-  };
 
   return (
     <main className="flex flex-col bg-base-100 gap-8 py-8 px-4 lg:px-16">
@@ -37,7 +28,7 @@ export default function CheckoutPage() {
             <div className="mb-4">
               <span className="font-bold text-xl">Toplam: {totalPrice} TL</span>
             </div>
-            <button className="btn btn-primary">Satın al</button>
+            <CheckoutButton />
           </div>
         </div>
       </div>

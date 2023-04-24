@@ -23,17 +23,6 @@ export async function handleLogout(supabase: SupabaseClient) {
   await supabase.auth.signOut();
 }
 
-function translateError(errorCode: string): string {
-  const errorTranslations: { [key: string]: string } = {
-    "Password should be at least 6 characters":
-      "Şifre en az 6 karakter uzunluğunda olmalıdır.",
-  };
-
-  return (
-    errorTranslations[errorCode] || "Bir hata oluştu. Lütfen tekrar deneyin."
-  );
-}
-
 export async function getSupabaseServerComponent() {
   const supabase = createServerComponentSupabaseClient<Database>({
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
