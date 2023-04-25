@@ -17,6 +17,7 @@ export default function CheckoutButton({ beats }: { beats: BeatData[] }) {
     <button
       onClick={() => {
         // TODO: Implement payment
+
         // If payment is successful:
         // clear cart
         dispatch(clearCart());
