@@ -1,16 +1,28 @@
 import { supabase } from "@/config/supabaseClient";
 import { BeatData } from "@/interfaces/BeatData";
 import { Database } from "@/interfaces/supabase";
-import { SupabaseClient, User } from "@supabase/auth-helpers-nextjs";
+import { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 // Convert the supabase response to a BeatData object
 function convertResponseToBeatData(response: any): BeatData {
+  // Get the image from supabase storage
+  // user_id/beat_id/image
+  const image = supabase.storage
+    .from("beats")
+    .getPublicUrl(`${response.user_id}/${response.id}/image`).data.publicUrl;
+
+  console.log(image);
+
+  const beat = supabase.storage
+    .from("beats")
+    .getPublicUrl(`${response.user_id}/${response.id}/beat`).data.publicUrl;
+
   return {
     id: response.id,
     name: response.name,
-    src: "/beat.mp3",
+    src: beat,
     price: response.price,
-    image: "/beat.jpg",
+    image: image,
     userId: response.user_id,
     userName: response.user_name,
   };

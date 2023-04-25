@@ -74,11 +74,9 @@ export default function BottomPlayer() {
   // Handle spacebar press
   useEffect(() => {
     const handleSpacePress = (event: KeyboardEvent) => {
-      console.log("here");
-      if (event.code === "Space") {
-        event.preventDefault();
-        togglePlay();
-      }
+      if (event.code !== "Space") return;
+      event.preventDefault();
+      togglePlay();
     };
 
     window.addEventListener("keydown", handleSpacePress);
