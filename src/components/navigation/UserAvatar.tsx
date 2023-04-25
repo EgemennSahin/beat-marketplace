@@ -11,6 +11,21 @@ export default async function UserAvatar() {
 
   const user = data.user!;
 
+  console.log(user);
+
+  if (!user?.id) {
+    return (
+      <div className="flex gap-2">
+        <Link
+          href="/auth"
+          className="btn bg-gradient-to-br from-primary hover:from-primary-focus to-secondary hover:to-secondary-focus text-white normal-case"
+        >
+          Kayıt / Giriş
+        </Link>
+      </div>
+    );
+  }
+
   // Get user data from table
   const { data: userData } = await supabase
     .from("users")
@@ -18,7 +33,9 @@ export default async function UserAvatar() {
     .eq("id", user.id)
     .single();
 
-  if (!user?.id || !userData?.id) {
+  console.log("user data", userData);
+
+  if (!userData) {
     return (
       <div className="flex gap-2">
         <Link

@@ -2,6 +2,7 @@
 
 // SignUp.tsx
 import { useSupabase } from "@/providers/SupabaseProvider";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function AuthenticationForm() {
@@ -10,14 +11,23 @@ export default function AuthenticationForm() {
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [mode, setMode] = useState<"login" | "signup">("login");
+  const router = useRouter();
 
   const supabase = useSupabase();
 
   const handleSignUp = async () => {
-    await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+      });
+      if (error) {
+        setError("Kayıt olurken bir hata oluştu. Lütfen tekrar deneyin.");
+        return;
+      }
+
+      router.push("/auth/verify");
+    } catch (err: any) {}
   };
 
   const handleLogin = async () => {

@@ -11,8 +11,6 @@ function convertResponseToBeatData(response: any): BeatData {
     .from("beats")
     .getPublicUrl(`${response.user_id}/${response.id}/image`).data.publicUrl;
 
-  console.log(image);
-
   const beat = supabase.storage
     .from("beats")
     .getPublicUrl(`${response.user_id}/${response.id}/beat`).data.publicUrl;
@@ -28,7 +26,27 @@ function convertResponseToBeatData(response: any): BeatData {
   };
 }
 
-// Convert the supabase response to a User object
+// Insert user row into the database
+export async function insertUserIntoDatabase(
+  id: string,
+  username: string,
+  role: string
+) {
+  const { data, error } = await supabase
+    .from("users")
+    .insert([{ id: id, user_name: username, role: role }])
+    .select();
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    return [];
+  }
+
+  return data;
+}
 
 // Get a single beat from the database
 export async function getBeatData(id: string): Promise<BeatData> {
