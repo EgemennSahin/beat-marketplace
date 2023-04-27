@@ -22,7 +22,7 @@ function convertResponseToBeatData(response: any): BeatData {
     price: response.price,
     image: image,
     userId: response.user_id,
-    userName: response.user_name,
+    userName: response.users.user_name,
   };
 }
 
@@ -90,7 +90,7 @@ export async function searchBeats(query: string): Promise<BeatData[]> {
 
   let { data, error } = await supabase
     .from("beats")
-    .select("*")
+    .select("*, users (user_name)")
     .or(`name.ilike.%${query}%,user_id.in.(${userIds.join(",")})`);
 
   if (error) {
