@@ -52,7 +52,7 @@ export async function insertUserIntoDatabase(
 export async function getBeatData(id: string): Promise<BeatData> {
   let { data: beat, error } = await supabase
     .from("beats")
-    .select("*")
+    .select("*, users (user_name)")
     .eq("id", id)
     .single();
 
@@ -169,7 +169,7 @@ export async function getBeatsUploadedByUser(
 ): Promise<BeatData[]> {
   const { data, error } = await supabaseServerComponent
     .from("beats")
-    .select("*")
+    .select("*, users (user_name)")
     .eq("user_id", userId);
 
   if (error) {
