@@ -10,7 +10,6 @@ export default async function SearchPage({
   searchParams: { q: string };
 }) {
   const { q } = searchParams;
-  console.log(searchParams);
   const searchResults: BeatData[] = await searchBeats(q);
 
   return (

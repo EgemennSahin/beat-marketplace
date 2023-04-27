@@ -31,8 +31,6 @@ export default function BeatUploadForm() {
   const handleUpload = async () => {
     if (!file || !image) return;
 
-    console.log("Uploading beat and image...");
-
     // Get user id
     const user_id = (await supabase.auth.getUser()).data.user?.id;
 
@@ -68,7 +66,6 @@ export default function BeatUploadForm() {
     // Upload beat file to storage
     const beatPath = `${user_id}/${beatId}/beat`;
 
-    console.log("Path:", beatPath);
     const { error: beatError } = await supabase.storage
       .from("beats")
       .upload(beatPath, file);

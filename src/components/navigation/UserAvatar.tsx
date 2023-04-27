@@ -11,8 +11,6 @@ export default async function UserAvatar() {
 
   const user = data.user!;
 
-  console.log(user);
-
   if (!user?.id) {
     return (
       <div className="flex gap-2">
@@ -33,7 +31,10 @@ export default async function UserAvatar() {
     .eq("id", user.id)
     .single();
 
-  console.log("user data", userData);
+  // Get user's profile picture from storage
+  const { data: profilePicture } = supabase.storage
+    .from("users")
+    .getPublicUrl(`${user.id}/profile`);
 
   if (!userData) {
     return (
@@ -61,7 +62,12 @@ export default async function UserAvatar() {
       <div className="dropdown dropdown-end">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
-            <Image src="/avatar.png" alt="avatar" width={40} height={40} />
+            <Image
+              src={profilePicture.publicUrl}
+              alt="avatar"
+              width={40}
+              height={40}
+            />
           </div>
         </label>
         <ul

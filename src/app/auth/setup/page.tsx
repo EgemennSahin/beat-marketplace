@@ -7,16 +7,59 @@ import React, { useState } from "react";
 export default function SelectRoleAndUsername() {
   const supabase = useSupabase();
   const router = useRouter();
+  const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
+  const profilePhotoInputRef = React.useRef<HTMLInputElement>(null);
 
   const [role, setRole] = useState<"buyer" | "seller" | null>(null);
   const [username, setUsername] = useState("");
   const [error, setError] = useState<string | null>(null);
 
+  const handleUserDataUpload = async (userId: string) => {
+    if (role && username) {
+      try {
+        const { data, error } = await supabase.from("users").insert([
+          {
+            id: userId,
+            user_name: username,
+            role,
+          },
+        ]);
+
+        if (error) {
+          throw error;
+        }
+      } catch (err: any) {
+        setError(err.message);
+      }
+    }
+  };
+
+  const handleProfilePhotoUpload = async (userId: string) => {
+    if (profilePhoto) {
+      try {
+        const { data, error } = await supabase.storage
+          .from("users")
+          .upload(`${userId}/profile`, profilePhoto);
+
+        if (error) {
+          throw error;
+        }
+      } catch (err: any) {
+        setError(err.message);
+      }
+    }
+  };
+
   const handleSubmit = async () => {
     const { data } = await supabase.auth.getUser();
+
+    console.log("data", data);
+
     if (data.user && role) {
       try {
-        await insertUserIntoDatabase(data.user.id, username, role);
+        await handleUserDataUpload(data.user.id);
+        await handleProfilePhotoUpload(data.user.id);
+
         router.push("/"); // Redirect to the main page or any other page after successful completion
       } catch (err: any) {
         setError(err.message);
@@ -54,6 +97,28 @@ export default function SelectRoleAndUsername() {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
+
+      <input
+        ref={profilePhotoInputRef}
+        type="file"
+        className="block w-full border rounded-md p-2 mb-4"
+        accept="image/*"
+        onChange={(e) => {
+          if (e.target.files) {
+            setProfilePhoto(e.target.files[0]);
+          }
+        }}
+        hidden
+      />
+
+      <button
+        className="btn btn-outline mb-4"
+        onClick={() => {
+          profilePhotoInputRef.current?.click();
+        }}
+      >
+        {profilePhoto ? "Change profile photo" : "Add profile photo"}
+      </button>
 
       <button className="btn btn-primary" onClick={handleSubmit}>
         Submit
