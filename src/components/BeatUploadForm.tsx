@@ -128,6 +128,7 @@ export default function BeatUploadForm() {
               id="name"
               className="input input-bordered"
               value={name}
+              onKeyDown={(e) => e.stopPropagation()}
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -185,19 +186,18 @@ export default function BeatUploadForm() {
   };
 
   return (
-    <div>
-      <div className="flex space-x-2">
-        {[1, 2, 3].map((num) => (
-          <div
-            key={num}
-            className={`${
-              stage === num ? "bg-primary" : "bg-gray-300"
-            } p-2 text-white rounded-lg`}
-          >
-            {num}
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-col items-center">
+      <ul className="steps mb-4">
+        <li className={`step ${stage >= 1 ? "step-primary" : ""}`}>
+          Beat Yükle
+        </li>
+        <li className={`step ${stage >= 2 ? "step-primary" : ""}`}>
+          Bilgi Gir
+        </li>
+        <li className={`step ${stage >= 3 ? "step-primary" : ""}`}>
+          Gözden Geçir
+        </li>
+      </ul>
       {renderStage()}
     </div>
   );
