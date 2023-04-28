@@ -107,7 +107,7 @@ export async function searchBeats(query: string): Promise<BeatData[]> {
 
 // Get all beats bought by a specific user
 export async function getBeatsBoughtByUser(
-  supabaseServerComponent: any
+  supabaseServerComponent: SupabaseClient<Database, "public">
 ): Promise<BeatData[]> {
   const { data, error } = await supabaseServerComponent
     .from("transactions")
@@ -115,9 +115,10 @@ export async function getBeatsBoughtByUser(
       `
       beat_id,
       beats (
+        id,
         name,
         user_id,
-        user_name,
+        users (user_name),
         price
       )
     `
@@ -132,7 +133,7 @@ export async function getBeatsBoughtByUser(
   }
 
   // Convert the supabase response to a more usable format
-  return data.map((data: any) => convertResponseToBeatData(data.beats));
+  return data.map((data) => convertResponseToBeatData(data.beats));
 }
 
 export async function addTransactionToTable(

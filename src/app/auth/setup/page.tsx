@@ -101,24 +101,14 @@ export default function SelectRoleAndUsername() {
       <input
         ref={profilePhotoInputRef}
         type="file"
-        className="block w-full border rounded-md p-2 mb-4"
+        className="file-input"
         accept="image/*"
         onChange={(e) => {
           if (e.target.files) {
             setProfilePhoto(e.target.files[0]);
           }
         }}
-        hidden
       />
-
-      <button
-        className="btn btn-outline mb-4"
-        onClick={() => {
-          profilePhotoInputRef.current?.click();
-        }}
-      >
-        {profilePhoto ? "Change profile photo" : "Add profile photo"}
-      </button>
 
       <button className="btn btn-primary" onClick={handleSubmit}>
         Submit

@@ -1,5 +1,4 @@
 // pages/search.tsx
-import { useRouter, useSearchParams } from "next/navigation";
 import { BeatData } from "@/interfaces/BeatData";
 import { Beat } from "@/components/beat/Beat";
 import { searchBeats } from "@/helpers/database";

@@ -48,7 +48,8 @@ export default function BottomPlayer() {
     audioRef.current.addEventListener("ended", handleEnded);
 
     return () => {
-      audioRef.current!.removeEventListener("ended", handleEnded);
+      if (!audioRef.current) return;
+      audioRef.current.removeEventListener("ended", handleEnded);
     };
   }, []);
 
@@ -63,7 +64,8 @@ export default function BottomPlayer() {
     audioRef.current.addEventListener("timeupdate", updateTime);
 
     return () => {
-      audioRef.current!.removeEventListener("timeupdate", updateTime);
+      if (!audioRef.current) return;
+      audioRef.current.removeEventListener("timeupdate", updateTime);
     };
   }, [audioRef.current, isPlaying]);
 

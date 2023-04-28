@@ -9,10 +9,12 @@ export default async function AuthPage() {
 
   const { data } = await supabase.auth.getUser();
 
+  // If user is logged in, redirect to home page
   if (data?.user?.id) {
     redirect("/");
   }
 
+  // If user has not confirmed their email, redirect to confirm page
   if (data?.user?.confirmation_sent_at) {
     redirect("/auth/confirm");
   }
