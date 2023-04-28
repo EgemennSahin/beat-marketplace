@@ -1,6 +1,9 @@
 // pages/search.tsx
 import { BeatData } from "@/interfaces/BeatData";
 import { Beat } from "@/components/beat/Beat";
+import { callApi } from "@/helpers/api";
+
+export const revalidate = 0;
 
 export default async function SearchPage({
   searchParams,
@@ -9,9 +12,9 @@ export default async function SearchPage({
 }) {
   const { q } = searchParams;
 
-  const searchResults = await fetch(
-    "http://localhost:3000/api/search?q=" + q
-  ).then((res) => res.json() as Promise<BeatData[]>);
+  const searchResults = await callApi(`search?q=${q}`).then(
+    (res) => res.json() as Promise<BeatData[]>
+  );
 
   return (
     <div>

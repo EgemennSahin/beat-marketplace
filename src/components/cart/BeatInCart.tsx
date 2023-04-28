@@ -19,7 +19,7 @@ export default function BeatInCart({
         showTrashIcon && "group"
       }`}
       style={{
-        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8)), url(${beatData.image})`,
+        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8)), url(${beatData.imageSrc})`,
       }}
     >
       <div className="p-2">
