@@ -1,7 +1,6 @@
 // pages/search.tsx
 import { BeatData } from "@/interfaces/BeatData";
 import { Beat } from "@/components/beat/Beat";
-import { searchBeats } from "@/helpers/database";
 
 export default async function SearchPage({
   searchParams,
@@ -10,8 +9,9 @@ export default async function SearchPage({
 }) {
   const { q } = searchParams;
 
-  const query = await fetch("/api/search?q=" + q);
-  const searchResults: BeatData[] = await query.json();
+  const searchResults = await fetch(
+    "http://localhost:3000/api/search?q=" + q
+  ).then((res) => res.json() as Promise<BeatData[]>);
 
   return (
     <div>

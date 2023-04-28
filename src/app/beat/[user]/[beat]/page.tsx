@@ -1,6 +1,7 @@
 import { Beat } from "@/components/beat/Beat";
 import AddToCartButton from "@/components/cart/base/AddToCartButtonBase";
-import { getBeatData } from "@/helpers/database";
+import { callApi } from "@/helpers/api";
+import { BeatData } from "@/interfaces/BeatData";
 
 export const revalidate = 0;
 
@@ -12,7 +13,11 @@ export default async function Page({
   // The parameters are in the url
   const { user, beat } = params;
 
-  const beatData = await getBeatData(beat);
+  const beatData = await callApi(`get_beat?id=${beat}`).then(
+    (res) => res.json() as Promise<BeatData>
+  );
+
+  console.log(beatData);
 
   if (!beatData) return <div>Beat not found</div>;
 

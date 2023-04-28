@@ -10,8 +10,6 @@ export interface BeatData {
 
 export interface UserData {
   id: string;
-  username: string;
-  email: string;
-  avatar: string;
-  bio: string;
+  user_name: string;
+  role: "buyer" | "seller";
 }

@@ -3,6 +3,7 @@
 
 import { supabase } from "@/config/supabaseClient";
 import { NextResponse } from "next/server";
+import { convertResponseToBeatData } from "../helpers";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -17,5 +18,7 @@ export async function GET(request: Request) {
     return NextResponse.error();
   }
 
-  return NextResponse.json(data);
+  const beats = data.map((beat) => convertResponseToBeatData(beat, supabase));
+
+  return NextResponse.json(beats);
 }

@@ -1,17 +1,16 @@
-// GET /api/get_beat?id=...
-// Get a single beat from the database
+// GET /api/get_user?id=...
+// Get a single user from the database
 
 import { supabase } from "@/config/supabaseClient";
 import { NextResponse } from "next/server";
-import { convertResponseToBeatData } from "../helpers";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 
   const { data, error } = await supabase
-    .from("beats")
-    .select("*, users (user_name)")
+    .from("users")
+    .select("*")
     .eq("id", id)
     .single();
 
@@ -19,5 +18,5 @@ export async function GET(request: Request) {
     return NextResponse.error();
   }
 
-  return NextResponse.json(convertResponseToBeatData(data, supabase));
+  return NextResponse.json(data);
 }

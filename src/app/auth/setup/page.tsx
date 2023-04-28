@@ -1,6 +1,5 @@
 "use client";
 
-import { insertUserIntoDatabase } from "@/helpers/database";
 import { useSupabase } from "@/providers/SupabaseProvider";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

@@ -1,11 +1,14 @@
 import BeatCarousel from "@/components/beat/BeatCarousel";
-import { searchBeats } from "@/helpers/database";
+import { callApi } from "@/helpers/api";
+import { BeatData } from "@/interfaces/BeatData";
 
 // Prevent caching
 export const revalidate = 0;
 
 export default async function Home() {
-  const beats = await searchBeats("");
+  const beats = await callApi("search?q=").then(
+    (res) => res.json() as Promise<BeatData[]>
+  );
 
   return (
     <main className="flex flex-col bg-base-100 gap-8 py-8 px-4 lg:px-16 w-screen">
