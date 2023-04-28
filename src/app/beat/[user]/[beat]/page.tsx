@@ -11,13 +11,11 @@ export default async function Page({
   params: { user: string; beat: number };
 }) {
   // The parameters are in the url
-  const { user, beat } = params;
+  const { beat } = params;
 
   const beatData = await callApi(`get_beat?id=${beat}`).then(
     (res) => res.json() as Promise<BeatData>
   );
-
-  console.log(beatData);
 
   if (!beatData) return <div>Beat not found</div>;
 

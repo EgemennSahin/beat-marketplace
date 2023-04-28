@@ -7,6 +7,8 @@ import { supabase } from "@/config/supabaseClient";
 import { NextResponse } from "next/server";
 import { convertResponseToBeatData } from "../helpers";
 
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const q = searchParams.get("q");

@@ -5,7 +5,5 @@ export default async function BeatInCheckout({ beatId }: { beatId: number }) {
     res.json()
   )) as BeatData;
 
-  console.log(beatData);
-
   return <pre>{beatData.id}</pre>;
 }

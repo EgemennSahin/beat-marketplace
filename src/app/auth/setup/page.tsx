@@ -52,7 +52,6 @@ export default function SelectRoleAndUsername() {
   const handleSubmit = async () => {
     const { data } = await supabase.auth.getUser();
 
-    console.log("data", data);
 
     if (data.user && role) {
       try {
