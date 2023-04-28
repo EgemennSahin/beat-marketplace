@@ -2,6 +2,8 @@ import { Beat } from "@/components/beat/Beat";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import { getBeatData } from "@/helpers/database";
 
+export const revalidate = 0;
+
 export default async function Page({
   params,
 }: {
