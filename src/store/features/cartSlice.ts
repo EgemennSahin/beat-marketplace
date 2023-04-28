@@ -44,8 +44,6 @@ export const cartSlice = createSlice({
   },
 });
 
-// Custom selector: getter function for the cart items
-
 const cartItems = (state: RootState) => state.cart.cartItems;
 
 export const itemInCartSelector = createSelector(

@@ -1,9 +1,9 @@
 export interface BeatData {
   id: number;
   name: string;
-  src: string;
+  audioSrc: string;
   price: number;
-  image: string;
+  imageSrc: string;
   userId: string;
   userName: string;
 }

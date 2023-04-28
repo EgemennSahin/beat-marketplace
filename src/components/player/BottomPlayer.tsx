@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, ChangeEvent } from "react";
 import Image from "next/image";
 import { formatTime } from "@/helpers/database";
 import { PauseCircleIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
-import AddToCartButton from "../cart/AddToCartButton";
+import AddToCartButton from "../cart/base/AddToCartButtonBase";
 import Link from "next/link";
 import { getBeatUrl, getUserUrl } from "@/helpers/routing";
 import { usePlayerContext } from "@/providers/BottomPlayerProvider";
@@ -110,7 +110,7 @@ export default function BottomPlayer() {
       <div className="p-3 bg-base-300 rounded-tr-md pointer-events-auto lg:flex hidden">
         <div className="relative w-48 h-48">
           <Image
-            src={beatData.image}
+            src={beatData.imageSrc}
             alt={beatData.name}
             fill
             style={{ objectFit: "cover" }}
@@ -196,7 +196,7 @@ export default function BottomPlayer() {
 
             <audio
               ref={audioRef}
-              src={beatData.src}
+              src={beatData.audioSrc}
               onLoadedMetadata={onLoadedMetadata}
             />
           </div>

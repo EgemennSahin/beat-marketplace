@@ -1,5 +1,5 @@
 import { Beat } from "@/components/beat/Beat";
-import AddToCartButton from "@/components/cart/AddToCartButton";
+import AddToCartButton from "@/components/cart/base/AddToCartButtonBase";
 import { getBeatData } from "@/helpers/database";
 
 export const revalidate = 0;
@@ -7,7 +7,7 @@ export const revalidate = 0;
 export default async function Page({
   params,
 }: {
-  params: { user: string; beat: string };
+  params: { user: string; beat: number };
 }) {
   // The parameters are in the url
   const { user, beat } = params;

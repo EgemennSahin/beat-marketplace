@@ -18,9 +18,9 @@ function convertResponseToBeatData(response: any): BeatData {
   return {
     id: response.id,
     name: response.name,
-    src: beat,
+    audioSrc: beat,
     price: response.price,
-    image: image,
+    imageSrc: image,
     userId: response.user_id,
     userName: response.users.user_name,
   };
@@ -49,7 +49,7 @@ export async function insertUserIntoDatabase(
 }
 
 // Get a single beat from the database
-export async function getBeatData(id: string): Promise<BeatData> {
+export async function getBeatData(id: number): Promise<BeatData> {
   let { data: beat, error } = await supabase
     .from("beats")
     .select("*, users (user_name)")
@@ -88,14 +88,43 @@ export async function searchBeats(query: string): Promise<BeatData[]> {
   // Fetch the ids of users that match the query
   const userIds = await getUsersWithMatchingUsername(query);
 
-  let { data, error } = await supabase
+  // Fetch beats filtered by name
+  let { data: dataByName, error: errorByName } = await supabase
     .from("beats")
-    .select("*, users (user_name)")
-    .or(`name.ilike.%${query}%,user_id.in.(${userIds.join(",")})`);
+    .select("*, users(user_name)")
+    .ilike("name", `%${query}%`);
+
+  // Fetch beats filtered by user_name
+  let { data: dataByUserName, error: errorByUserName } = await supabase
+    .from("beats")
+    .select("*, users!inner(user_name)")
+    .ilike("users.user_name", `%${query}%`);
+
+  const error = errorByName || errorByUserName;
 
   if (error) {
     throw error;
   }
+
+  // Merge the two results into one array
+  // Handle the case where one of the results is null or only one item instead of an array
+  let data: any[] = [];
+
+  if (dataByName) {
+    data = data.concat(dataByName);
+  }
+
+  if (dataByUserName) {
+    data = data.concat(dataByUserName);
+  }
+
+  // Remove duplicates
+  data = data.filter((beat, index, self) => {
+    return (
+      index ===
+      self.findIndex((t) => t.id === beat.id && t.user_name === beat.user_name)
+    );
+  });
 
   if (!data) {
     data = [];

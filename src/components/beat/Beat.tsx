@@ -10,8 +10,8 @@ export function Beat({ beatData }: { beatData: BeatData }) {
       <div className="h-36 w-36 lg:h-64 lg:w-64 relative rounded-md overflow-clip hover:cursor-pointer">
         <PlayBeatButton beatData={beatData} />
         <Image
-          src={beatData.image}
-          alt="Beat 1"
+          src={beatData.imageSrc}
+          alt="Beat"
           fill
           style={{ objectFit: "cover" }}
         />

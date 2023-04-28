@@ -9,7 +9,9 @@ export default async function SearchPage({
   searchParams: { q: string };
 }) {
   const { q } = searchParams;
-  const searchResults: BeatData[] = await searchBeats(q);
+
+  const query = await fetch("/api/search?q=" + q);
+  const searchResults: BeatData[] = await query.json();
 
   return (
     <div>
