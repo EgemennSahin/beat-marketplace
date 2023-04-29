@@ -11,7 +11,7 @@ export default function CartItems() {
   return (
     <div className="flex flex-col gap-8 w-96">
       {cartItems.map((beatData) => (
-        <BeatInCheckout key={beatData.id} beatId={beatData.id} />
+        <BeatInCheckout key={beatData.id} beatData={beatData} />
       ))}
     </div>
   );
