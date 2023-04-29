@@ -1,7 +1,7 @@
 import { BeatData } from "@/interfaces/BeatData";
 
 export function getBeatUrl(beat: BeatData) {
-  return `/beat/${beat.userId}/${beat.id}`;
+  return `/beat/${beat.id}`;
 }
 
 export function getUserUrl(userId: string) {
