@@ -37,7 +37,7 @@ export default function BeatInCheckout({ beatData }: { beatData: BeatData }) {
   }
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl image-full">
+    <div className="card w-full shadow-xl image-full">
       <figure className="w-full relative">
         <Image src={data.imageSrc} alt={data.name} fill />
       </figure>
