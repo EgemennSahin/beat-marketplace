@@ -1,7 +1,7 @@
 // pages/search.tsx
 import { BeatData } from "@/interfaces/BeatData";
 import { Beat } from "@/components/beat/Beat";
-import { callApi } from "@/helpers/api";
+import { callApi } from "../api/helpers";
 
 export const revalidate = 0;
 

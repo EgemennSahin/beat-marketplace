@@ -14,10 +14,7 @@ export default async function UserAvatar() {
   if (!user?.id) {
     return (
       <div className="flex gap-2">
-        <Link
-          href="/auth"
-          className="btn bg-gradient-to-br from-primary hover:from-primary-focus to-secondary hover:to-secondary-focus text-white normal-case"
-        >
+        <Link href="/auth" className="btn btn-primary normal-case">
           Kayıt / Giriş
         </Link>
       </div>
@@ -39,10 +36,7 @@ export default async function UserAvatar() {
   if (!userData) {
     return (
       <div className="flex gap-2">
-        <Link
-          href="/auth"
-          className="btn bg-gradient-to-br from-primary hover:from-primary-focus to-secondary hover:to-secondary-focus text-white normal-case"
-        >
+        <Link href="/auth" className="btn btn-primary normal-case">
           Kayıt / Giriş
         </Link>
       </div>
@@ -52,10 +46,7 @@ export default async function UserAvatar() {
   return (
     <div className="flex gap-4">
       {userData.role == "seller" && (
-        <Link
-          href="/dashboard"
-          className="btn bg-gradient-to-br from-primary hover:from-primary-focus to-secondary hover:to-secondary-focus text-white normal-case"
-        >
+        <Link href="/dashboard" className="btn btn-primary normal-case">
           Beat Yükle
         </Link>
       )}

@@ -1,9 +1,7 @@
 // pages/search.tsx
-import { redirect } from "next/navigation";
 import { Beat } from "@/components/beat/Beat";
-import { getSupabaseServerClient } from "@/helpers/supabase";
 import { BeatData } from "@/interfaces/BeatData";
-import { callApi } from "@/helpers/api";
+import { callApi } from "../api/helpers";
 
 export const revalidate = 0;
 

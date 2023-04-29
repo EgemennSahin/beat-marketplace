@@ -9,12 +9,11 @@ export default function CartReview() {
   const totalPrice = useAppSelector(totalPriceSelector);
 
   return (
-    <div className="bg-base-200 p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Sepet Özeti</h2>
+    <>
       <div className="mb-4">
         <span className="font-bold text-xl">Toplam: {totalPrice} TL</span>
       </div>
       <CheckoutButton beats={cartItems} />
-    </div>
+    </>
   );
 }

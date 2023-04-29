@@ -35,9 +35,9 @@ export default function RootLayout({
             <CartProvider>
               {/* @ts-expect-error Server Component */}
               <Navbar />
-              <Suspense fallback={<Loading />}>
-                <div className="flex-grow pt-16">{children}</div>
-              </Suspense>
+              <div className="flex-grow pt-16">
+                <Suspense fallback={<Loading />}>{children}</Suspense>
+              </div>
               <BottomPlayer />
             </CartProvider>
           </PlayerContextProvider>

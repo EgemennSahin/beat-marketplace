@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ViewCartButton from "../cart/CartButton";
+import ViewCartButton from "../cart/Cart";
 import UserAvatar from "./UserAvatar";
 import Search from "./Search";
 

@@ -1,5 +1,5 @@
+import { callApi } from "@/app/api/helpers";
 import { Beat } from "@/components/beat/Beat";
-import { callApi } from "@/helpers/api";
 import { BeatData, UserData } from "@/interfaces/BeatData";
 
 export const revalidate = 0;

@@ -1,6 +1,6 @@
 import BeatCarousel from "@/components/beat/BeatCarousel";
-import { callApi } from "@/helpers/api";
 import { BeatData } from "@/interfaces/BeatData";
+import { callApi } from "./api/helpers";
 
 // Prevent caching
 export const revalidate = 0;

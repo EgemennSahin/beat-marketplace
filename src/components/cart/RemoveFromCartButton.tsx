@@ -2,12 +2,12 @@
 import { BeatData } from "@/interfaces/BeatData";
 import { CartProvider } from "@/providers/CartProvider";
 
-import AddToCartButtonBase from "./base/AddToCartButtonBase";
+import RemoveFromCartButtonBase from "./base/RemoveFromCartButtonBase";
 
 export default function AddToCartButton({ beatData }: { beatData: BeatData }) {
   return (
     <CartProvider>
-      <AddToCartButtonBase beatData={beatData} />
+      <RemoveFromCartButtonBase beatId={beatData.id} />
     </CartProvider>
   );
 }

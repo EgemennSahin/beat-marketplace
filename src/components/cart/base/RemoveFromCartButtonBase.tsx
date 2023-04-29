@@ -2,28 +2,25 @@
 
 // AddToCartButton.tsx
 import { BeatData } from "@/interfaces/BeatData";
-import {
-  itemInCartSelector,
-  removeFromCart,
-} from "@/store/features/cartSlice";
+import { itemInCartSelector, removeFromCart } from "@/store/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 export default function RemoveFromCartButtonBase({
-  beatData,
+  beatId,
 }: {
-  beatData: BeatData;
+  beatId: number;
 }) {
   const itemInCart = useAppSelector((state) =>
-    itemInCartSelector(state, beatData.id)
+    itemInCartSelector(state, beatId)
   );
   const dispatch = useAppDispatch();
 
   return (
     <button
-      disabled={itemInCart ? true : false}
-      onClick={() => dispatch(removeFromCart(beatData.id))}
-      className={`btn btn-primary btn-sm ${itemInCart ? "btn-disabled" : ""}`}
+      disabled={itemInCart ? false : true}
+      onClick={() => dispatch(removeFromCart(beatId))}
+      className="btn btn-primary btn-sm"
     >
       <TrashIcon className="w-6 h-6" />
     </button>
