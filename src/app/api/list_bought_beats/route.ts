@@ -5,9 +5,12 @@ import { Database } from "@/interfaces/supabase";
 import { createRouteHandlerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { cookies, headers } from "next/headers";
 import { NextResponse } from "next/server";
+import { convertResponseToBeatData } from "../helpers";
 
 export const revalidate = 0;
 
+// This function does not work currently because of supabase's lack of support for reading cookies in a get api call
+// TODO: when supabase adds support for reading cookies in a get api call, use this function
 export async function GET() {
   // Get the auth token from the request
   // It is in the cookie under supabase-auth-token
@@ -34,7 +37,9 @@ export async function GET() {
   }
 
   // Convert the supabase response to beat responses
-  const beats = transactions.map((transaction) => transaction.beats);
+  const beats = transactions.map((transaction) =>
+    convertResponseToBeatData(transaction.beats, supabase)
+  );
 
   return NextResponse.json(beats);
 }

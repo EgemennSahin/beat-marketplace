@@ -14,7 +14,7 @@ export async function addTransactionToTable(
 
   const { data, error } = await supabase
     .from("transactions")
-    .insert([{ buyer_id: user.id, beat_id: beatId }]);
+    .upsert([{ buyer_id: user.id, beat_id: beatId }]);
 
   if (error) {
     throw error;

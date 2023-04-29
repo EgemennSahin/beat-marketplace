@@ -1,13 +1,33 @@
 // pages/search.tsx
 import { Beat } from "@/components/beat/Beat";
-import { BeatData } from "@/interfaces/BeatData";
-import { callApi } from "../api/helpers";
+import { convertResponseToBeatData } from "@/app/api/helpers";
+import { getSupabaseServerClient } from "@/helpers/supabase";
 
 export const revalidate = 0;
 
 export default async function LibraryPage() {
-  const beats = await callApi("list_bought_beats").then(
-    (res) => res.json() as Promise<BeatData[]>
+  // const beats = await callApi("list_bought_beats", 0).then(
+  //   (res) => res.json() as Promise<BeatData[]>
+  // );
+
+  const supabase = getSupabaseServerClient();
+
+  // Query into the transactions table to get all transactions for the user
+  const { data, error } = await supabase.from("transactions").select(
+    `
+      beats (
+        *,
+        users (user_name)
+      )
+    `
+  );
+
+  if (!data) {
+    return <div>Yükleniyor...</div>;
+  }
+
+  const beats = data.map((transaction) =>
+    convertResponseToBeatData(transaction.beats, supabase)
   );
 
   return (
