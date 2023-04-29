@@ -106,9 +106,9 @@ export default function BottomPlayer() {
   if (!beatData) return null;
 
   return (
-    <div className="sticky bottom-0 flex items-end w-screen pointer-events-none">
+    <div className="z-50 fixed bottom-0 flex items-end w-screen pointer-events-none">
       <div className="p-3 bg-base-300 rounded-tr-md pointer-events-auto lg:flex hidden">
-        <div className="relative w-48 h-48">
+        <div className="relative w-40 h-40">
           <Image
             src={beatData.imageSrc}
             alt={beatData.name}
@@ -116,7 +116,7 @@ export default function BottomPlayer() {
             style={{ objectFit: "cover" }}
             className="rounded-md"
           />
-          <div className="absolute bottom-0 h-1/3 w-full bg-gradient-to-b from-transparent to-base-300 opacity-100 rounded-md" />
+          <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-b from-transparent to-base-300 opacity-100 rounded-md" />
           <div className="absolute bottom-0 right-1/2 translate-x-1/2 px-2 hidden z-10 lg:flex flex-col items-start w-full">
             <Link
               className="text-primary-content text-xl hover:underline truncate w-full"

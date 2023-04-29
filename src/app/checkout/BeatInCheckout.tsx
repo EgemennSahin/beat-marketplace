@@ -45,7 +45,9 @@ export default function BeatInCheckout({ beatData }: { beatData: BeatData }) {
         <Link href={`/beat/${data.id}`} className="card-title">
           {data.name}
         </Link>
-        <Link href={`/user/${data.userId}`}>{data.userName}</Link>
+        <Link className="text-sm" href={`/user/${data.userId}`}>
+          {data.userName}
+        </Link>
         <div className="card-actions justify-end">
           <p className="text-xl font-bold">{data.price} TL</p>
           <RemoveFromCartButtonBase beatId={data.id} />

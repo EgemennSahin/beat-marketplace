@@ -20,7 +20,7 @@ export default function RemoveFromCartButtonBase({
     <button
       disabled={itemInCart ? false : true}
       onClick={() => dispatch(removeFromCart(beatId))}
-      className="btn btn-primary btn-sm"
+      className="btn btn-sm"
     >
       <TrashIcon className="w-6 h-6" />
     </button>
