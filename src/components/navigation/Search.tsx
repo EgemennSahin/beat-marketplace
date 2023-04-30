@@ -3,6 +3,7 @@
 // components/Search.tsx
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,18 +16,20 @@ export default function Search() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-1 w-full lg:w-auto">
-      <input
-        type="text"
-        placeholder="Beat ara"
-        value={searchTerm}
-        onKeyDown={(e) => e.stopPropagation()}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="input input-bordered input-sm w-full lg:w-auto"
-      />
-      <button type="submit" className="btn btn-sm btn-ghost hidden lg:block">
-        Ara
-      </button>
+    <form onSubmit={handleSubmit} className="form-control w-full lg:w-auto">
+      <div className="input-group">
+        <input
+          type="text"
+          placeholder="Beat ara"
+          value={searchTerm}
+          onKeyDown={(e) => e.stopPropagation()}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="input input-bordered input-sm w-full lg:w-auto"
+        />
+        <button type="submit" className="btn btn-square btn-sm">
+          <MagnifyingGlassIcon className="p-1" />
+        </button>
+      </div>
     </form>
   );
 }

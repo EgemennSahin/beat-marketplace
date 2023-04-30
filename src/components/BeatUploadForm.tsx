@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useSupabase } from "@/providers/SupabaseProvider";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function BeatUploadForm() {
   const router = useRouter();
@@ -96,86 +97,105 @@ export default function BeatUploadForm() {
         return (
           <div>
             <label className="block text-sm mb-2" htmlFor="file">
-              Upload Beat (MP3/WAV)
+              Dosya Yükle
             </label>
+
             <input
               type="file"
               id="file"
               accept=".mp3,.wav"
               onChange={handleFileChange}
               required
+              className="file-input file-input-bordered w-full max-w-xs"
             />
             <button
               className="btn btn-primary mt-4"
               onClick={() => setStage(2)}
               disabled={!file}
             >
-              Next
+              İlerle
             </button>
           </div>
         );
       case 2:
         return (
           <div>
-            <label className="block text-sm mb-2" htmlFor="name">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="input input-bordered"
-              value={name}
-              onKeyDown={(e) => e.stopPropagation()}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Ad</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                className="input input-bordered"
+                value={name}
+                onKeyDown={(e) => e.stopPropagation()}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
 
-            <label className="block text-sm mb-2 mt-4" htmlFor="price">
-              Price
-            </label>
-            <input
-              type="number"
-              id="price"
-              className="input input-bordered"
-              value={price}
-              onChange={(e) => setPrice(parseFloat(e.target.value))}
-              required
-            />
-
-            <label className="block text-sm mb-2 mt-4" htmlFor="image">
-              Upload Cover Image (PNG/JPG)
-            </label>
-            <input
-              type="file"
-              id="image"
-              accept=".png,.jpg,.jpeg"
-              onChange={handleImageChange}
-              required
-            />
+              <label className="label">
+                <span className="label-text">Fiyat</span>
+              </label>
+              <label className="input-group">
+                <input
+                  type="number"
+                  id="price"
+                  className="input input-bordered"
+                  value={price}
+                  onChange={(e) => setPrice(parseFloat(e.target.value))}
+                  required
+                />
+                <span>TL</span>
+              </label>
+              <label className="label">
+                <span className="label-text">Kapak Fotoğrafı</span>
+              </label>
+              <input
+                type="file"
+                id="image"
+                accept=".png,.jpg,.jpeg"
+                onChange={handleImageChange}
+                required
+                className="file-input file-input-bordered w-full max-w-xs"
+              />
+            </div>
 
             <button
               className="btn btn-primary mt-4"
               onClick={() => setStage(3)}
               disabled={!name || !price || !image}
             >
-              Next
+              İlerle
             </button>
           </div>
         );
       case 3:
         return (
           <div>
-            <h2 className="text-xl font-semibold">Review</h2>
-            <p>Name: {name}</p>
-            <p>Price: ${price.toFixed(2)}</p>
+            <p>Ad: {name}</p>
+            <p>Fiyat: {price.toFixed(2)} TL</p>
             <p>
-              Beat File: {file?.name} ({(file?.size || 0) / 1000} KB)
+              Beat:
+              <audio controls className="w-full max-w-xs">
+                <source src={URL.createObjectURL(file!)} />
+              </audio>
             </p>
             <p>
-              Image File: {image?.name} ({(image?.size || 0) / 1000} KB)
+              Kapak Fotoğrafı:
+              <div className="avatar">
+                <div className="w-24 rounded">
+                  <Image
+                    alt="Kapak Fotoğrafı"
+                    src={URL.createObjectURL(image!)}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              </div>
             </p>
             <button className="btn btn-primary mt-4" onClick={handleUpload}>
-              Upload
+              Yükle
             </button>
           </div>
         );
