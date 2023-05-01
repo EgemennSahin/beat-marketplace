@@ -46,7 +46,10 @@ export default async function UserAvatar() {
   return (
     <div className="flex gap-4">
       {userData.role == "seller" && (
-        <Link href="/dashboard" className="btn btn-primary normal-case">
+        <Link
+          href="/dashboard"
+          className="btn btn-primary normal-case hidden lg:block"
+        >
           Beat Yükle
         </Link>
       )}
@@ -66,10 +69,10 @@ export default async function UserAvatar() {
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <Link href="/library">Beatlerin</Link>
+            <Link href={`/user/${userData.id}`}>Profil</Link>
           </li>
           <li>
-            <a>Ayarlar</a>
+            <Link href="/dashboard">Beat Yükle</Link>
           </li>
           <li>
             <LogoutButton />
