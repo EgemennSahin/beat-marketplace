@@ -48,7 +48,7 @@ export default async function UserAvatar() {
       {userData.role == "seller" && (
         <Link
           href="/dashboard"
-          className="btn btn-primary normal-case hidden lg:block"
+          className="btn btn-primary normal-case hidden lg:flex"
         >
           Beat Yükle
         </Link>
