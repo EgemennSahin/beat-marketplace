@@ -12,4 +12,5 @@ export interface UserData {
   id: string;
   user_name: string;
   role: "buyer" | "seller";
+  image_url: string;
 }

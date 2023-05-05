@@ -20,5 +20,19 @@ export async function GET(request: Request) {
     return NextResponse.error();
   }
 
-  return NextResponse.json(data);
+  // Get user's profile picture from storage
+  const { data: profilePicture } = supabase.storage
+    .from("users")
+    .getPublicUrl(`${data.id}/profile`);
+
+  if (!profilePicture) {
+    return NextResponse.error();
+  }
+
+  return NextResponse.json({
+    id: data.id,
+    user_name: data.user_name,
+    role: data.role,
+    image_url: profilePicture.publicUrl,
+  });
 }
