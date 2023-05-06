@@ -2,8 +2,30 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import CartItemCountBadge from "./CartItemCountBadge";
 import CartDropdown from "./CartDropdown";
 import Link from "next/link";
+import { getSupabaseServerClient } from "@/helpers/supabase";
 
-export default function Cart() {
+export default async function Cart() {
+  const supabase = getSupabaseServerClient();
+
+  const { data } = await supabase.auth.getUser();
+
+  const user = data.user!;
+
+  if (!user?.id) {
+    return <div></div>;
+  }
+
+  // Get user data from table
+  const { data: userData } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", user?.id)
+    .single();
+
+  if (userData?.role == "seller") {
+    return <div></div>;
+  }
+
   return (
     <div className="z-50 dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle">

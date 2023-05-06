@@ -3,7 +3,7 @@ import ViewCartButton from "../cart/Cart";
 import UserAvatar from "./UserAvatar";
 import Search from "./Search";
 
-export default async function Navbar() {
+export default function Navbar() {
   return (
     <div className="fixed top-0 navbar justify-between p-4 h-16 space-x-4 w-screen lg:px-16 bg-base-200 z-50">
       <div className="flex-1 space-x-4">
@@ -17,6 +17,7 @@ export default async function Navbar() {
         {/* @ts-expect-error Server Component */}
         <UserAvatar />
 
+        {/* @ts-expect-error Server Component */}
         <ViewCartButton />
       </div>
     </div>
