@@ -33,7 +33,6 @@ export default function RootLayout({
         <SupabaseProvider>
           <PlayerContextProvider>
             <CartProvider>
-              {/* @ts-expect-error Server Component */}
               <Navbar />
               <div className="flex-grow pt-16 pb-40">
                 <Suspense fallback={<Loading />}>{children}</Suspense>
