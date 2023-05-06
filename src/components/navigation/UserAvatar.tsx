@@ -5,7 +5,7 @@ import { useSupabase } from "@/providers/SupabaseProvider";
 import { getSupabaseServerClient } from "@/helpers/supabase";
 
 export default async function UserAvatar() {
-  const supabase = await getSupabaseServerClient();
+  const supabase = getSupabaseServerClient();
 
   const { data } = await supabase.auth.getUser();
 
