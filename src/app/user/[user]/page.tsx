@@ -21,8 +21,8 @@ export default async function UserPage({
   );
 
   return (
-    <main className="bg-base-100 pt-4 flex-col items-center flex gap-8">
-      <div className="flex gap-3 p-4">
+    <main className="bg-base-100 flex-col items-center flex gap-8">
+      <div className="flex gap-3">
         <div className="avatar">
           <div className="w-24 rounded-full relative overflow-clip">
             <Image

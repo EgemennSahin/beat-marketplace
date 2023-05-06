@@ -50,7 +50,7 @@ export default async function UserAvatar() {
           href="/dashboard"
           className="btn btn-primary normal-case hidden lg:flex"
         >
-          Beat Yükle
+          Stüdyo Paneli
         </Link>
       )}
       <div className="dropdown dropdown-end">
@@ -68,11 +68,17 @@ export default async function UserAvatar() {
           tabIndex={0}
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
+          {userData.role == "seller" ? (
+            <li>
+              <Link href="/dashboard">Stüdyo Paneli</Link>
+            </li>
+          ) : (
+            <li>
+              <Link href="/library">Beatlerin</Link>
+            </li>
+          )}
           <li>
             <Link href={`/user/${userData.id}`}>Profil</Link>
-          </li>
-          <li>
-            <Link href="/dashboard">Beat Yükle</Link>
           </li>
           <li>
             <LogoutButton />
