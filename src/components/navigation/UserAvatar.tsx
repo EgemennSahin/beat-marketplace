@@ -69,17 +69,20 @@ export default async function UserAvatar() {
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
           {userData.role == "seller" ? (
-            <li>
-              <Link href="/dashboard">Stüdyo Paneli</Link>
-            </li>
+            <>
+              <li>
+                <Link href="/dashboard">Stüdyo Paneli</Link>
+              </li>
+              <li>
+                <Link href={`/user/${userData.id}`}>Profil</Link>
+              </li>
+            </>
           ) : (
             <li>
               <Link href="/library">Beatlerin</Link>
             </li>
           )}
-          <li>
-            <Link href={`/user/${userData.id}`}>Profil</Link>
-          </li>
+
           <li>
             <LogoutButton />
           </li>
