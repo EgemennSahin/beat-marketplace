@@ -1,10 +1,22 @@
 import React from "react";
 import CartReview from "./CartReview";
 import CartItems from "./CartItems";
+import { getSupabaseServerClient } from "@/helpers/supabase";
+import { redirect } from "next/navigation";
 
 export const revalidate = 0;
 
-export default function CheckoutPage() {
+export default async function CheckoutPage() {
+  const supabase = getSupabaseServerClient();
+  const { data } = await supabase.auth.getUser();
+
+  const user = data.user!;
+
+  // If user is not logged in, redirect to login page
+  if (!user?.id) {
+    redirect("/auth");
+  }
+
   return (
     <main className="flex flex-col bg-base-100 gap-8 py-8 px-4 lg:px-16">
       <div className="container mx-auto">

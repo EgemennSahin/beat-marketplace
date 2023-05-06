@@ -11,10 +11,6 @@ export default async function Cart() {
 
   const user = data.user!;
 
-  if (!user?.id) {
-    return <div></div>;
-  }
-
   // Get user data from table
   const { data: userData } = await supabase
     .from("users")
