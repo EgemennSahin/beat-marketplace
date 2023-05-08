@@ -8,10 +8,6 @@ import SupabaseProvider from "@/providers/SupabaseProvider";
 import { Suspense } from "react";
 import Loading from "./loading";
 
-const karla = Karla({
-  subsets: ["latin"],
-});
-
 export const metadata = {
   title: "Beat Marketplace",
   description: "A marketplace for beats",
@@ -23,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={karla.className} lang="en">
+    <html lang="en">
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"

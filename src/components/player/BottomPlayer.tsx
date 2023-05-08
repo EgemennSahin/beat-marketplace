@@ -107,7 +107,7 @@ export default function BottomPlayer() {
 
   return (
     <div className="z-50 fixed bottom-0 flex items-end w-screen pointer-events-none">
-      <div className="p-3 bg-base-300 rounded-tr-md pointer-events-auto lg:flex hidden">
+      <div className="p-3 bg-neutral rounded-tr-md pointer-events-auto lg:flex hidden">
         <div className="relative w-40 h-40">
           <Image
             src={beatData.imageSrc}
@@ -116,7 +116,7 @@ export default function BottomPlayer() {
             style={{ objectFit: "cover" }}
             className="rounded-md"
           />
-          <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-b from-transparent to-base-300 opacity-100 rounded-md" />
+          <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-b from-transparent to-neutral opacity-100 rounded-md" />
           <div className="absolute bottom-0 right-1/2 translate-x-1/2 px-2 hidden z-10 lg:flex flex-col items-start w-full">
             <Link
               className="text-primary-content text-xl hover:underline truncate w-full"
@@ -134,7 +134,7 @@ export default function BottomPlayer() {
         </div>
       </div>
 
-      <div className="flex gap-12 bg-base-300 lg:pr-12 lg:pl-2 px-8 py-4 items-center rounded-tr-md flex-grow z-10 pointer-events-auto">
+      <div className="flex gap-12 bg-neutral lg:pr-12 lg:pl-2 px-8 py-4 items-center rounded-tr-md flex-grow z-10 pointer-events-auto">
         <div className="flex flex-grow gap-4">
           <button
             className="text-primary-content hidden lg:block"
@@ -202,7 +202,7 @@ export default function BottomPlayer() {
           </div>
         </div>
 
-        <div className="lg:flex items-end gap-1 hidden ">
+        <div className="lg:flex items-center gap-1 hidden ">
           <span className="text-primary-content text-xl mr-2">
             {beatData.price} TL
           </span>

@@ -11,13 +11,12 @@ export default function CartDropdown() {
   return (
     <>
       {cartItems.map((beatData) => (
-        <BeatInCart
-          key={beatData.id}
-          beatData={beatData}
-          showTrashIcon={true}
-        />
+        <BeatInCart key={beatData.id} beatData={beatData} />
       ))}
-      <span className="text-info text-end mr-1.5">Toplam: {totalPrice} TL</span>
+      <span className="text-info text-end mr-2">
+        Toplam:
+        <span className="font-semibold"> {totalPrice} TL</span>
+      </span>
     </>
   );
 }

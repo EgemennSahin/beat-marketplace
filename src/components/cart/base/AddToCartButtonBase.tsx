@@ -20,9 +20,11 @@ export default function AddToCartButtonBase({
     <button
       disabled={itemInCart ? true : false}
       onClick={() => dispatch(addToCart(beatData))}
-      className={`btn btn-primary btn-sm ${itemInCart ? "btn-disabled" : ""}`}
+      className={`btn btn-square btn-primary ${
+        itemInCart ? "btn-disabled" : ""
+      }`}
     >
-      <ShoppingCartIcon className="w-6 h-6" />
+      <ShoppingCartIcon className="w-8 h-8" />
     </button>
   );
 }

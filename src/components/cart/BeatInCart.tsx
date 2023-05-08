@@ -4,13 +4,7 @@ import { useAppDispatch } from "@/store/store";
 import { removeFromCart } from "@/store/features/cartSlice";
 import Link from "next/link";
 
-export default function BeatInCart({
-  beatData,
-  showTrashIcon = true,
-}: {
-  beatData: BeatData;
-  showTrashIcon?: boolean;
-}) {
+export default function BeatInCart({ beatData }: { beatData: BeatData }) {
   const dispatch = useAppDispatch();
 
   return (
@@ -25,17 +19,19 @@ export default function BeatInCart({
           href={`/beat/${beatData.id}`}
           className="text-white truncate hover:underline"
         >
-          {beatData.name}
+          {beatData.name} asdfkhasgfkhasdgfkjasdkjfkgjsd
         </Link>
-        <span className="text-white whitespace-nowrap group-hover:hidden">
-          {beatData.price} TL
-        </span>
-        <button
-          onClick={() => dispatch(removeFromCart(beatData.id))}
-          className="btn btn-sm btn-error	btn-square p-1"
-        >
-          <TrashIcon className="h-full w-full " />
-        </button>
+        <div className="flex space-x-4 items-center">
+          <span className="text-white whitespace-nowrap group-hover:hidden font-semibold">
+            {beatData.price} TL
+          </span>
+          <button
+            onClick={() => dispatch(removeFromCart(beatData.id))}
+            className="btn btn-sm btn-error btn-outline btn-square p-1"
+          >
+            <TrashIcon className="h-full w-full " />
+          </button>
+        </div>
       </div>
     </div>
   );

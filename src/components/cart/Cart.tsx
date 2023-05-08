@@ -32,7 +32,7 @@ export default async function Cart() {
       </label>
       <div
         tabIndex={0}
-        className="mt-4 card card-compact dropdown-content w-72 bg-base-200 shadow-2xl"
+        className="mt-4 card card-compact dropdown-content w-72 bg-neutral shadow-2xl"
       >
         <div className="card-body gap-4">
           <span className="font-bold text-lg">Beatler</span>
