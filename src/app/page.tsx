@@ -2,7 +2,7 @@ import BeatCarousel from "@/components/beat/BeatCarousel";
 import { BeatData } from "@/interfaces/BeatData";
 import { callApi } from "./api/helpers";
 import Image from "next/image";
-import PlayBeatButton from "@/components/beat/PlayBeatButton";
+import PlayButton from "@/components/beat/PlayButton";
 
 // Prevent caching
 export const revalidate = 0;
@@ -27,20 +27,13 @@ export default async function Home() {
           className="hero-overlay opacity-40"
           alt="Hero Image"
         />
-        <div className="hero-content flex-col lg:flex-row items-start">
-          <div className=" bg-base-100 text-base-content p-6 rounded-lg shadow-md lg:col-span-2 relative group">
-            <h2 className="text-2xl font-bold">Beat dinle</h2>
-            <PlayBeatButton beatData={beats[0]} />
-          </div>
-
-          <div>
-            <h1 className="mb-5 text-5xl font-bold">Beat Ustaları</h1>
-            <p className="mb-5">
-              Eşsiz ritimler, sınırsız yaratıcılık, hayallerinizi gerçeğe
-              dönüştürün
-            </p>
-            <button className="btn btn-primary">Hemen Başla</button>
-          </div>
+        <div className="hero-content flex-col gap-2">
+          <h1 className="mb-5 text-5xl font-bold">Beat Ustaları</h1>
+          <p className="mb-5">
+            Eşsiz ritimler, sınırsız yaratıcılık, hayallerinizi gerçeğe
+            dönüştürün
+          </p>
+          <PlayButton beatData={beats[0]} />
         </div>
         <div className="max-w-md"></div>
       </div>

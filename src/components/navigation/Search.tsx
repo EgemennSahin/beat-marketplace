@@ -24,9 +24,9 @@ export default function Search() {
           value={searchTerm}
           onKeyDown={(e) => e.stopPropagation()}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered input-sm w-full lg:w-auto"
+          className="input input-bordered input-md lg:input-sm w-full lg:w-auto"
         />
-        <button type="submit" className="btn btn-square btn-sm">
+        <button type="submit" className="btn btn-square btn-md lg:btn-sm">
           <MagnifyingGlassIcon className="p-1" />
         </button>
       </div>
