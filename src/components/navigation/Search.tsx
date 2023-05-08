@@ -27,7 +27,7 @@ export default function Search() {
           className="input input-bordered input-md lg:input-sm w-full lg:w-auto"
         />
         <button type="submit" className="btn btn-square btn-md lg:btn-sm">
-          <MagnifyingGlassIcon className="p-1" />
+          <MagnifyingGlassIcon className="p-1 text-neutral-content" />
         </button>
       </div>
     </form>
