@@ -3,6 +3,7 @@ import { BeatData } from "@/interfaces/BeatData";
 import { callApi } from "./api/helpers";
 import Image from "next/image";
 import PlayButton from "@/components/beat/PlayButton";
+import ParallaxImage from "@/components/ParallaxImage";
 
 // Prevent caching
 export const revalidate = 0;
@@ -13,20 +14,9 @@ export default async function Home() {
   );
 
   return (
-    <main className="flex flex-col bg-base-100 gap-8 py-8 px-4 lg:px-16 w-screen">
-      <div
-        className="hero min-h-screen"
-        style={{
-          backgroundImage: "/hero.jpg",
-        }}
-      >
-        <Image
-          src="/hero.jpg"
-          fill
-          style={{ objectFit: "cover" }}
-          className="hero-overlay opacity-40"
-          alt="Hero Image"
-        />
+    <main className="flex flex-col bg-base-100 gap-8 py-8  w-screen">
+      <div className="hero min-h-screen relative overflow-hidden">
+        <ParallaxImage />
         <div className="hero-content flex-col gap-2">
           <h1 className="mb-5 text-5xl font-bold">Beat Ustaları</h1>
           <p className="mb-5">
@@ -35,9 +25,10 @@ export default async function Home() {
           </p>
           <PlayButton beatData={beats[0]} />
         </div>
-        <div className="max-w-md"></div>
       </div>
-      <BeatCarousel title="En çok dinlenilenler" beats={beats} />
+      <div className="px-4 lg:px-16">
+        <BeatCarousel title="En çok dinlenilenler" beats={beats} />
+      </div>
     </main>
   );
 }
