@@ -14,7 +14,7 @@ export default function CartDropdown() {
         <BeatInCart
           key={beatData.id}
           beatData={beatData}
-          showTrashIcon={false}
+          showTrashIcon={true}
         />
       ))}
       <span className="text-info text-end mr-1.5">Toplam: {totalPrice} TL</span>

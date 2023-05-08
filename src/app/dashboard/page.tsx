@@ -5,6 +5,8 @@ import { callApi } from "../api/helpers";
 import Image from "next/image";
 import { Beat } from "@/components/beat/Beat";
 
+export const revalidate = 0;
+
 export default async function DashboardPage() {
   // Get user data from table
   const userId = (await getSupabaseServerClient().auth.getUser()).data.user?.id;

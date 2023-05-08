@@ -10,7 +10,7 @@ export default async function CheckoutPage() {
   const supabase = getSupabaseServerClient();
   const { data } = await supabase.auth.getUser();
 
-  const user = data.user!;
+  const user = data.user;
 
   // If user is not logged in, redirect to login page
   if (!user?.id) {
