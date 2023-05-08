@@ -5,17 +5,18 @@ import { redirect } from "next/navigation";
 export const revalidate = 0;
 
 export default async function AuthPage() {
-  const supabase = await getSupabaseServerClient();
-
+  const supabase = getSupabaseServerClient();
   const { data } = await supabase.auth.getUser();
 
+  const user = data.user;
+
   // If user is logged in, redirect to home page
-  if (data?.user?.id) {
+  if (user?.id) {
     redirect("/");
   }
 
   // If user has not confirmed their email, redirect to confirm page
-  if (data?.user?.confirmation_sent_at) {
+  if (user?.confirmation_sent_at) {
     redirect("/auth/confirm");
   }
 
