@@ -26,8 +26,8 @@ export default function Search() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="input input-bordered input-md lg:input-sm w-full lg:w-auto"
         />
-        <button type="submit" className="btn btn-square btn-md lg:btn-sm">
-          <MagnifyingGlassIcon className="p-1 text-neutral-content" />
+        <button type="submit" className="btn p-1 btn-square btn-md lg:btn-sm">
+          <MagnifyingGlassIcon className="text-neutral-content" />
         </button>
       </div>
     </form>

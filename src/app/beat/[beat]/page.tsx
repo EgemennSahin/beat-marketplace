@@ -20,7 +20,7 @@ export default async function Page({
   if (!beatData) return <div>Beat not found</div>;
 
   return (
-    <main className="mx-auto mt-16 flex w-fit p-12 gap-8 rounded-md bg-base-300 flex-col">
+    <main className="mx-auto mt-16 flex w-fit p-12 gap-8 rounded-md bg-base-300 flex-col items-center">
       <Beat beatData={beatData} />
       <AddToCartButton beatData={beatData} />
     </main>
