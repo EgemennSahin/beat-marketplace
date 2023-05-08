@@ -30,7 +30,7 @@ export default function RootLayout({
           <PlayerContextProvider>
             <CartProvider>
               <Navbar />
-              <div className="flex-grow pb-40">
+              <div className="flex-grow pb-40 pt-16">
                 <Suspense fallback={<Loading />}>{children}</Suspense>
               </div>
               <BottomPlayer />

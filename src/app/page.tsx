@@ -14,8 +14,8 @@ export default async function Home() {
   );
 
   return (
-    <main className="flex flex-col bg-base-100 gap-8 py-8  w-screen">
-      <div className="hero min-h-screen relative overflow-hidden">
+    <main className="flex flex-col bg-base-100 gap-8 w-screen">
+      <div className="hero min-h-[75vh] relative overflow-hidden">
         <ParallaxImage />
         <div className="hero-content flex-col gap-2 text-center">
           <h1 className="mb-5 text-5xl font-bold">Beat Ustaları</h1>
