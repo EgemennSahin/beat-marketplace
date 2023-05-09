@@ -8,9 +8,9 @@ export const revalidate = 0;
 
 export default async function CheckoutPage() {
   const supabase = getSupabaseServerClient();
-  const { data } = await supabase.auth.getUser();
+  const { data } = await supabase.auth.getSession();
 
-  const user = data.user;
+  const user = data.session?.user;
 
   // If user is not logged in, redirect to login page
   if (!user?.id) {

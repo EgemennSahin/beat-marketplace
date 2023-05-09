@@ -6,10 +6,9 @@ import { getSupabaseServerClient } from "@/helpers/supabase";
 
 export default async function Cart() {
   const supabase = getSupabaseServerClient();
+  const { data } = await supabase.auth.getSession();
 
-  const { data } = await supabase.auth.getUser();
-
-  const user = data.user!;
+  const user = data.session?.user;
 
   // Get user data from table
   const { data: userData } = await supabase

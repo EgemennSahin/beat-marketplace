@@ -33,7 +33,8 @@ export default function BeatUploadForm() {
     if (!file || !image) return;
 
     // Get user id
-    const user_id = (await supabase.auth.getUser()).data.user?.id;
+    const { data: userData } = await supabase.auth.getSession();
+    const user_id = userData.session?.user.id;
 
     if (!user_id) {
       console.error("Error: user id not found");

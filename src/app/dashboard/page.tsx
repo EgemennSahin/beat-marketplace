@@ -9,7 +9,10 @@ export const revalidate = 0;
 
 export default async function DashboardPage() {
   // Get user data from table
-  const userId = (await getSupabaseServerClient().auth.getUser()).data.user?.id;
+  const supabase = getSupabaseServerClient();
+  const { data } = await supabase.auth.getSession();
+
+  const userId = data.session?.user.id;
 
   const userData = await callApi(`get_user?id=${userId}`).then(
     (res) => res.json() as Promise<UserData>

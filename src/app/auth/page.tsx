@@ -6,9 +6,9 @@ export const revalidate = 0;
 
 export default async function AuthPage() {
   const supabase = getSupabaseServerClient();
-  const { data } = await supabase.auth.getUser();
+  const { data } = await supabase.auth.getSession();
 
-  const user = data.user;
+  const user = data.session?.user;
 
   // If user is logged in, redirect to home page
   if (user?.id) {

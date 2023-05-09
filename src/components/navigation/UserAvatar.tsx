@@ -1,15 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LogoutButton } from "./LogoutButton";
-import { useSupabase } from "@/providers/SupabaseProvider";
 import { getSupabaseServerClient } from "@/helpers/supabase";
 
 export default async function UserAvatar() {
   const supabase = getSupabaseServerClient();
+  const { data } = await supabase.auth.getSession();
 
-  const { data } = await supabase.auth.getUser();
-
-  const user = data.user!;
+  const user = data.session?.user;
 
   if (!user?.id) {
     return (

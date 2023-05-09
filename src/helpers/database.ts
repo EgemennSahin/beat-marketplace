@@ -5,13 +5,11 @@ export async function addTransactionToTable(
   supabase: SupabaseClient,
   beatId: number
 ) {
-  const { data: userData } = await supabase.auth.getUser();
+  const user = (await supabase.auth.getSession()).data.session?.user;
 
-  if (!userData || !userData.user?.id) {
+  if (!user || !user.id) {
     throw new Error("User not found");
   }
-
-  const user = userData.user;
 
   // Check if transaction already exists
   const { data: transactionData } = await supabase
