@@ -4,8 +4,6 @@ import CartItems from "./CartItems";
 import { getSupabaseServerClient } from "@/helpers/supabase";
 import { redirect } from "next/navigation";
 
-export const revalidate = 0;
-
 export default async function CheckoutPage() {
   const supabase = getSupabaseServerClient();
   const { data } = await supabase.auth.getSession();
