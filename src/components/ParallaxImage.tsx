@@ -20,7 +20,7 @@ export default function ParallaxImage() {
     <div
       className="absolute inset-0 z-0"
       style={{
-        transform: `scale(1.2) translateY(${scrollPosition * 0.2}px)`,
+        transform: `scale(1.2) translateY(${scrollPosition * 0.2 - 25}px)`,
         transitionTimingFunction: "ease-in-out",
       }}
     >
