@@ -2,7 +2,7 @@ import BeatUploadForm from "@/components/BeatUploadForm";
 
 export default function UploadPage() {
   return (
-    <div>
+    <div className="pt-12">
       <BeatUploadForm />
     </div>
   );

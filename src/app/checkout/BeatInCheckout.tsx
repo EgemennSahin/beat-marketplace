@@ -37,10 +37,12 @@ export default function BeatInCheckout({ beatData }: { beatData: BeatData }) {
   }
 
   return (
-    <div className="card w-full shadow-xl image-full">
-      <figure className="w-full relative">
-        <Image src={data.imageSrc} alt={data.name} fill />
-      </figure>
+    <div
+      className="card w-full shadow-xl relative bg-cover bg-center bg-no-repeat rounded-md"
+      style={{
+        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.9)), url(${beatData.imageSrc})`,
+      }}
+    >
       <div className="card-body relative z-10 hyphens-auto">
         <Link href={`/beat/${data.id}`} className="card-title">
           {data.name}

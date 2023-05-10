@@ -18,11 +18,10 @@ export default function RemoveFromCartButtonBase({
 
   return (
     <button
-      disabled={itemInCart ? false : true}
-      onClick={() => dispatch(removeFromCart(beatId))}
-      className="btn btn-sm"
+      onClick={() => dispatch(removeFromCart(itemInCart!.id))}
+      className="btn btn-sm btn-error btn-outline btn-square p-1"
     >
-      <TrashIcon className="w-6 h-6" />
+      <TrashIcon className="h-full w-full" />
     </button>
   );
 }

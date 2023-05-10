@@ -7,6 +7,7 @@ import { PlayerContextProvider } from "@/providers/BottomPlayerProvider";
 import SupabaseProvider from "@/providers/SupabaseProvider";
 import { Suspense } from "react";
 import Loading from "./loading";
+import Footer from "@/components/navigation/Footer";
 
 export const metadata = {
   title: "Beat Marketplace",
@@ -25,15 +26,16 @@ export default function RootLayout({
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
       />
 
-      <body className="relative overflow-x-hidden flex flex-col h-screen items-center justify-between">
+      <body className="relative overflow-x-hidden flex flex-col h-screen items-center justify-between pb-40 pt-16">
         <SupabaseProvider>
           <PlayerContextProvider>
             <CartProvider>
               <Navbar />
-              <div className="flex-grow pb-40 pt-16">
+              <div className="flex-grow pb-16">
                 <Suspense fallback={<Loading />}>{children}</Suspense>
               </div>
               <BottomPlayer />
+              <Footer />
             </CartProvider>
           </PlayerContextProvider>
         </SupabaseProvider>

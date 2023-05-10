@@ -4,6 +4,7 @@ import Link from "next/link";
 import { callApi } from "../api/helpers";
 import Image from "next/image";
 import { Beat } from "@/components/beat/Beat";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 export const revalidate = 0;
 
@@ -23,27 +24,34 @@ export default async function DashboardPage() {
   );
 
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="flex gap-3">
-        <div className="avatar">
-          <div className="w-24 rounded-full relative overflow-clip">
-            <Image
-              src={userData?.image_url}
-              alt="Profile Image"
-              fill
-              style={{ objectFit: "cover" }}
-            />
+    <div className="flex flex-col pt-12">
+      <div className="flex justify-between gap-3 items-center">
+        <div className="flex items-center gap-6">
+          <div className="avatar">
+            <div className="w-24 rounded-full relative overflow-clip">
+              <Image
+                src={userData?.image_url}
+                alt="Profile Image"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h1 className="text-4xl font-bold">{userData?.user_name}</h1>
+            <h2>{beats.length} beat</h2>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <h1 className="text-4xl font-bold">{userData?.user_name}</h1>
-          <h2>{beats.length} beat</h2>
-        </div>
+
+        <Link className="btn btn-secondary w-fit" href="/dashboard/upload">
+          <PlusIcon className="h-5 w-5 mr-2" />
+          Beat Yükle
+        </Link>
       </div>
-      <Link className="btn btn-primary w-fit" href="/dashboard/upload">
-        Beat Yükle
-      </Link>
-      <div className="grid grid-cols-5 items-center min-w-96">
+
+      <h1 className="text-2xl font-bold mt-12 mb-4">Yüklenen Beatler</h1>
+
+      <div className="grid grid-cols-4 items-center min-w-96 gap-x-4 gap-y-8">
         {beats.map((beat, index) => (
           <Beat key={index} beatData={beat} />
         ))}

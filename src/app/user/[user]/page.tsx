@@ -39,7 +39,7 @@ export default async function UserPage({
         </div>
       </div>
 
-      <div className="grid grid-cols-5 items-center min-w-96">
+      <div className="grid grid-cols-4 items-center min-w-96">
         {beats.map((beat, index) => (
           <Beat key={index} beatData={beat} />
         ))}

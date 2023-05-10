@@ -27,8 +27,8 @@ export default async function LibraryPage() {
   );
 
   return (
-    <div>
-      <h1>Satın Aldığın Beatler</h1>
+    <div className="pt-16">
+      <h1 className="text-4xl font-bold mb-6">Satın Aldığın Beatler</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {beats.map((beat, index) => (
           <Beat key={index} beatData={beat} />

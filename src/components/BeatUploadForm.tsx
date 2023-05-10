@@ -89,14 +89,14 @@ export default function BeatUploadForm() {
     }
 
     // Redirect to another page (e.g., homepage) after successful upload
-    router.push("/");
+    router.push("/dashboard");
   };
 
   const renderStage = () => {
     switch (stage) {
       case 1:
         return (
-          <div>
+          <div className="flex flex-col">
             <label className="block text-sm mb-2" htmlFor="file">
               Dosya Yükle
             </label>
@@ -110,7 +110,7 @@ export default function BeatUploadForm() {
               className="file-input file-input-bordered w-full max-w-xs"
             />
             <button
-              className="btn btn-primary mt-4"
+              className="btn btn-primary mt-4 place-self-end"
               onClick={() => setStage(2)}
               disabled={!file}
             >
@@ -120,7 +120,7 @@ export default function BeatUploadForm() {
         );
       case 2:
         return (
-          <div>
+          <div className="flex flex-col">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Ad</span>
@@ -135,21 +135,23 @@ export default function BeatUploadForm() {
                 required
               />
 
-              <label className="label">
+              <label className="label mt-8">
                 <span className="label-text">Fiyat</span>
               </label>
               <label className="input-group">
                 <input
                   type="number"
                   id="price"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   value={price}
+                  min={0}
                   onChange={(e) => setPrice(parseFloat(e.target.value))}
                   required
                 />
                 <span>TL</span>
               </label>
-              <label className="label">
+
+              <label className="label mt-8">
                 <span className="label-text">Kapak Fotoğrafı</span>
               </label>
               <input
@@ -163,7 +165,7 @@ export default function BeatUploadForm() {
             </div>
 
             <button
-              className="btn btn-primary mt-4"
+              className="btn btn-primary mt-4 place-self-end"
               onClick={() => setStage(3)}
               disabled={!name || !price || !image}
             >
@@ -173,29 +175,34 @@ export default function BeatUploadForm() {
         );
       case 3:
         return (
-          <div>
-            <p>Ad: {name}</p>
-            <p>Fiyat: {price.toFixed(2)} TL</p>
-            <p>
-              Beat:
-              <audio controls className="w-full max-w-xs">
-                <source src={URL.createObjectURL(file!)} />
-              </audio>
-            </p>
-            <p>
-              Kapak Fotoğrafı:
-              <div className="avatar">
-                <div className="w-24 rounded">
-                  <Image
-                    alt="Kapak Fotoğrafı"
-                    src={URL.createObjectURL(image!)}
-                    width={100}
-                    height={100}
-                  />
-                </div>
+          <div className="flex flex-col gap-4">
+            <div className="avatar">
+              <div className="w-64 rounded-md">
+                <Image
+                  alt="Kapak Fotoğrafı"
+                  src={URL.createObjectURL(image!)}
+                  width={100}
+                  height={100}
+                />
               </div>
-            </p>
-            <button className="btn btn-primary mt-4" onClick={handleUpload}>
+            </div>
+            <div className="flex justify-between">
+              <p>Ad</p>
+              <p className="font-bold">{name}</p>
+            </div>
+            <div className="flex justify-between">
+              <p>Fiyat</p>
+              <p className="font-bold">{price.toFixed(2)} TL</p>
+            </div>
+
+            <audio controls className="w-full max-w-xs">
+              <source src={URL.createObjectURL(file!)} />
+            </audio>
+
+            <button
+              className="btn btn-primary mt-4 place-self-end"
+              onClick={handleUpload}
+            >
               Yükle
             </button>
           </div>
@@ -205,8 +212,8 @@ export default function BeatUploadForm() {
 
   return (
     <div className="flex flex-col items-center">
-      <ul className="steps mb-4">
-        <li className={`step ${stage >= 1 ? "step-primary" : ""}`}>
+      <ul className="steps mb-12">
+        <li className={`step w-64 ${stage >= 1 ? "step-primary" : ""}`}>
           Beat Yükle
         </li>
         <li className={`step ${stage >= 2 ? "step-primary" : ""}`}>

@@ -34,18 +34,18 @@ export default function VerifyEmail() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center pt-12">
       <h1 className="text-3xl font-semibold mb-4">
         {emailVerified
-          ? "Your email has been verified! Redirecting..."
-          : "Please check your email and verify your account."}
+          ? "Email adresi doğrulandı! Yönlendiriliyorsunuz..."
+          : "Lütfen email adresinizi doğrulayın."}
       </h1>
       <button
         className="btn btn-primary"
         onClick={checkEmailVerification}
         disabled={emailVerified}
       >
-        {emailVerified ? "Redirecting..." : "I've verified my email"}
+        {emailVerified ? "Yönlendiriliyorsunuz..." : "Doğruladım"}
       </button>
     </div>
   );

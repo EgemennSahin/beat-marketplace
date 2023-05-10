@@ -28,7 +28,7 @@ export default function CheckoutButton({ beats }: { beats: BeatData[] }) {
         // redirect to library
         router.push("/library");
       }}
-      className="btn btn-primary"
+      className="btn btn-primary btn-block btn-sm"
     >
       Satın al
     </button>

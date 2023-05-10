@@ -95,7 +95,7 @@ export default function AuthenticationForm() {
         }}
         className={`flex flex-col gap-4 mt-8 ${
           mode == "login" ? "bg-base-300" : "bg-base-200"
-        } p-12 rounded-md`}
+        } p-8 rounded-md`}
       >
         <h1 className="text-3xl font-semibold">
           {mode == "signup" ? "Kayıt Ol" : "Giriş Yap"}
@@ -130,7 +130,7 @@ export default function AuthenticationForm() {
         <div className="flex flex-col mt-4">
           <button
             type="submit"
-            className={`btn ${
+            className={`btn btn-sm btn-wide ${
               mode == "signup" ? "btn-primary" : "btn-secondary"
             }`}
           >
@@ -144,7 +144,7 @@ export default function AuthenticationForm() {
               e.preventDefault();
               toggleMode();
             }}
-            className="btn btn-ghost self-center"
+            className="link link-hover"
           >
             {mode == "signup" ? "Giriş Yap" : "Kayıt Ol"}
           </button>

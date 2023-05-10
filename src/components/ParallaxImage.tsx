@@ -20,15 +20,15 @@ export default function ParallaxImage() {
     <div
       className="absolute inset-0 z-0"
       style={{
-        transform: `scale(1.2) translateY(${scrollPosition * 0.2 - 25}px)`,
+        transform: `scale(1.2) translateY(${scrollPosition * 0.2}px)`,
         transitionTimingFunction: "ease-in-out",
       }}
     >
       <Image
-        src="/hero.jpg"
+        src="/new_hero.jpg"
         fill
-        style={{ objectFit: "cover" }}
-        className="hero-overlay opacity-40"
+        style={{ objectFit: "cover", objectPosition: "center 80%" }}
+        className="hero-overlay opacity-20"
         alt="Hero Image"
       />
     </div>

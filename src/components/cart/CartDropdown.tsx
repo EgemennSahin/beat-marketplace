@@ -13,7 +13,7 @@ export default function CartDropdown() {
       {cartItems.map((beatData) => (
         <BeatInCart key={beatData.id} beatData={beatData} />
       ))}
-      <span className="text-info text-end mr-2">
+      <span className="text-white text-end mr-2">
         Toplam:
         <span className="font-semibold"> {totalPrice} TL</span>
       </span>

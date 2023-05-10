@@ -14,6 +14,12 @@ export default function PlayButton({ beatData }: PlayButtonProps) {
 
   const showPlayer = () => {
     setSelectedBeat(beatData);
+
+    // Scroll down by 100% of the viewport height
+    window.scrollBy({
+      top: window.innerHeight * 0.9,
+      behavior: "smooth",
+    });
   };
 
   return (

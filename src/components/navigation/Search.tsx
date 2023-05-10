@@ -16,7 +16,7 @@ export default function Search() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-control w-full lg:w-auto">
+    <form onSubmit={handleSubmit} className="form-control w-full">
       <div className="input-group">
         <input
           type="text"
@@ -24,10 +24,10 @@ export default function Search() {
           value={searchTerm}
           onKeyDown={(e) => e.stopPropagation()}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered input-md lg:input-sm w-full lg:w-auto"
+          className="input input-bordered input-md lg:input-sm w-full"
         />
-        <button type="submit" className="btn p-1 btn-square btn-md lg:btn-sm">
-          <MagnifyingGlassIcon className="text-neutral-content" />
+        <button type="submit" className="btn btn-square btn-md lg:btn-sm">
+          <MagnifyingGlassIcon className="text-neutral-content p-1" />
         </button>
       </div>
     </form>

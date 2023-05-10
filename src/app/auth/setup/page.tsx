@@ -52,7 +52,6 @@ export default function SelectRoleAndUsername() {
   const handleSubmit = async () => {
     const { data } = await supabase.auth.getUser();
 
-
     if (data.user && role) {
       try {
         await handleUserDataUpload(data.user.id);
@@ -66,9 +65,9 @@ export default function SelectRoleAndUsername() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center pt-12">
       <h1 className="text-3xl font-semibold mb-4">
-        Select your role and enter a username
+        Rolünüzü ve kullanıcı adınızı seçin.
       </h1>
 
       <div className="mb-4">

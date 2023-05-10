@@ -36,7 +36,7 @@ export default function BeatCarousel({
 
   return (
     <div className="flex flex-col gap-6 max-w-full">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h2 className="text-2xl font-medium text-base-content">{title}</h2>
         <div className="flex gap-4">
           <button

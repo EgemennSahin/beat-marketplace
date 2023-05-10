@@ -17,17 +17,21 @@ export default async function Home() {
     <main className="flex flex-col bg-base-100 gap-8 w-screen">
       <div className="hero min-h-[75vh] relative overflow-hidden">
         <ParallaxImage />
-        <div className="hero-content flex-col gap-2 text-center">
-          <h1 className="mb-5 text-5xl font-bold">Beat Ustaları</h1>
-          <p className="mb-5">
-            Eşsiz ritimler, sınırsız yaratıcılık, hayallerinizi gerçeğe
-            dönüştürün
-          </p>
-          <PlayButton beatData={beats[0]} />
+        <div className="grid grid-cols-2">
+          <div className="flex-col z-0 text-white">
+            <h1 className="mb-5 text-5xl font-bold">Beat Ustaları</h1>
+            <p className="mb-5">
+              Eşsiz ritimler, sınırsız yaratıcılık, hayallerinizi gerçeğe
+              dönüştürün
+            </p>
+            <PlayButton beatData={beats[0]} />
+          </div>
+          <div className="flex flex-col items-center"></div>
         </div>
       </div>
-      <div className="px-4 lg:px-16">
-        <BeatCarousel title="En çok dinlenilenler" beats={beats} />
+      <div className="px-4 lg:px-24 space-y-8">
+        <BeatCarousel title="Öne Çıkanlar" beats={beats} />
+        <BeatCarousel title="Yükselenler" beats={beats} />
       </div>
     </main>
   );
