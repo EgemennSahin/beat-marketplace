@@ -1,9 +1,10 @@
 import BeatCarousel from "@/components/beat/BeatCarousel";
-import { BeatData } from "@/interfaces/BeatData";
+import { BeatData, UserData } from "@/interfaces/BeatData";
 import { callApi } from "./api/helpers";
 import Image from "next/image";
 import PlayButton from "@/components/beat/PlayButton";
 import ParallaxImage from "@/components/ParallaxImage";
+import UserCarousel from "@/components/user/UserCarousel";
 
 // Prevent caching
 export const revalidate = 0;
@@ -12,6 +13,12 @@ export default async function Home() {
   const beats = await callApi("search?q=").then(
     (res) => res.json() as Promise<BeatData[]>
   );
+
+  const users = await callApi("search_users?q=").then(
+    (res) => res.json() as Promise<UserData[]>
+  );
+
+  console.log("Users: ", users);
 
   return (
     <main className="flex flex-col bg-base-100 gap-8 w-screen">
@@ -31,6 +38,7 @@ export default async function Home() {
       </div>
       <div className="px-4 lg:px-24 space-y-8">
         <BeatCarousel title="Öne Çıkanlar" beats={beats} />
+        <UserCarousel title="Öne Çıkan Prodüktörler" users={users} />
         <BeatCarousel title="Yükselenler" beats={beats} />
       </div>
     </main>

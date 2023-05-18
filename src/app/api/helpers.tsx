@@ -1,4 +1,4 @@
-import { BeatData } from "@/interfaces/BeatData";
+import { BeatData, UserData } from "@/interfaces/BeatData";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 // Convert the supabase response to a BeatData object
@@ -24,6 +24,22 @@ export function convertResponseToBeatData(
     imageSrc: image,
     userId: response.user_id,
     userName: response.users.user_name,
+  };
+}
+
+export function convertResponseToUserData(
+  response: any,
+  supabase: SupabaseClient
+): UserData {
+  const image = supabase.storage
+    .from("users")
+    .getPublicUrl(`${response.id}/profile`).data.publicUrl;
+
+  return {
+    id: response.id,
+    user_name: response.user_name,
+    role: response.role,
+    image_url: image,
   };
 }
 

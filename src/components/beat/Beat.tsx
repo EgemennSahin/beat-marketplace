@@ -6,7 +6,7 @@ import { getBeatUrl, getUserUrl } from "@/helpers/routing";
 
 export function Beat({ beatData }: { beatData: BeatData }) {
   return (
-    <div className="flex flex-col gap-1 p-2 rounded-md transition-colors hover:bg-base-200 group">
+    <div className="flex flex-col gap-1 p-2 rounded-md transition-colors hover:bg-base-200 group drop-shadow-lg">
       <div className="h-36 w-36 lg:h-56 lg:w-56 relative rounded-md overflow-clip hover:cursor-pointer">
         <PlayBeatButton beatData={beatData} />
         <Image
